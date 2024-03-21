@@ -1,0 +1,9 @@
+[22-Nov-2022 11:49:48 Asia/Jakarta] PHP Fatal error:  Cannot redeclare Orders::pending() in /home/dairyoff/wms.dairyofficial.id/application/controllers/transaksi/Orders.php on line 28
+[22-Nov-2022 11:49:50 Asia/Jakarta] PHP Fatal error:  Cannot redeclare Orders::pending() in /home/dairyoff/wms.dairyofficial.id/application/controllers/transaksi/Orders.php on line 28
+[19-Dec-2022 20:28:40 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
+[19-Dec-2022 20:28:49 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
+[19-Dec-2022 20:28:51 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
+[19-Dec-2022 20:28:55 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
+[19-Dec-2022 20:28:57 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
+[19-Dec-2022 20:28:58 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
+[19-Dec-2022 20:28:59 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ';', expecting ',' or ')' in /home/dairyoff/wms.dairyofficial.id/index.php on line 70
