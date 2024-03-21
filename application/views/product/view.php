@@ -43,8 +43,6 @@
                         <thead>
                         <tr>
                             <th>Product</th>
-                            <th>Harga</th>
-                            <th>QTY</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th>Action</th>
@@ -54,8 +52,6 @@
                             <?php foreach ($product as $key => $prod): ?>
                                 <tr>
                                     <td><?php echo $prod['nama_product'] ?></td> 
-                                    <td><?php echo number_format($prod['harga_product'],2,',','.'); ?></td> 
-                                    <td><?php echo $prod['qty_item'] ?></td> 
                                     <td><?php echo produkStatus($prod['status_product']) ?></td> 
                                     <td><?php echo $prod['created_date'] ?></td> 
                                     <td>
