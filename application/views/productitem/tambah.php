@@ -27,9 +27,7 @@
                 <div class="card-box">
                     <h4 class="header-title m-t-0 m-b-20">Tambah Item Product</h4>
                     <form method="POST" action="<?php echo BASEURL.'itemproduct/tambahOnAct' ?>" enctype="multipart/form-data">
-
                         <div class="form-group">
-
                             <label>Product</label>
                             <select class="form-control selectpicker" data-live-search="true" required name="artikelProd">
                             	<option>Select Product</option>
@@ -37,15 +35,9 @@
                             		<option value="<?php echo $prod['id_product'] ?>"><?php echo $prod['nama_product'] ?></option>
                             	<?php endforeach ?>
                             </select>
-
                         </div>
-
-
-
                         <div class="table-responsive">
-
                             <table class="table table-bordered" id="item_table">
-
                                 <tr>
                                     <th>*SKU</th>
                                     <th>*Varian</th>
@@ -55,11 +47,10 @@
                                     <th>*Harga</th>
                                     <th><button type="button" name="add" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i></button></th>
                                 </tr>
-                                </table>
-                                <div align="center">
-                                    <button type="submit" class="btn btn-info">Submit</button>
-                                </div>
-
+                            </table>
+                            <div align="center">
+                                <button type="submit" class="btn btn-info">Submit</button>
+                            </div>
                         </div>
                     </form>
                 </div>
