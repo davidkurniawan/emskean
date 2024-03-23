@@ -57,13 +57,16 @@
                                         <select class="form-control" name="kategoriProduk" id="kategoriProduk" required>
                                             <option value="">Piih Kategori</option>
                                             <?php foreach ($kategori as $key => $kat): ?>
-                                                <option value="<?php echo $kat['id_product_category'] ?>"><?php echo strtoupper($kat['name']) ?></option>
+                                                <option <?php if($dataProd['id_product_category'] == $kat['id_product_category']){echo "selected='selected'";} ?> value="<?php echo $kat['id_product_category'] ?>"><?php echo strtoupper($kat['name']) ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Kategori Sub Produk</label>
                                         <select class="form-control" name="subkategoriProduk" id="subkategoriProduk" required>
+                                            <?php foreach ($subkategori as $key => $subkat): ?>
+                                                <option value="<?php echo $subkat['id_productsub_category'] ?>"><?php echo strtoupper($subkat['name']) ?></option>
+                                            <?php endforeach ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -78,7 +81,7 @@
                     			<div class="col-6">
                     				<div class="form-group">
                     					<label>Tanggal</label>
-                    					<input type="date" class="form-control" name="tanggal" value="<?php echo $dataProd['created_date'] ?>" required>
+                    					<input type="date" class="form-control" name="tanggal" value="<?php echo date('Y-m-d',strtotime($dataProd['created_date'])) ?>" required>
                     				</div>
                                     <div class="form-group">
                                         <label>Diskon Produk</label>
@@ -122,7 +125,7 @@
 		                                </table>
 
 			                        </div>
-                    				<button class="btn btn-info" type="submit">Submit</button>
+                    				<button class="btn btn-info" type="submit">SUBMIT</button>
                     			</div>
                     		</div>
                     	</form>
@@ -132,47 +135,58 @@
 
             <div class="col-sm-12">
                 <div class="card-box">
-                    <h4 class="m-t-0 header-title">Tambah Item Product</h4>
-                    <form method="POST" action="<?php echo BASEURL.'itemproduct/tambahOnAct' ?>" class="" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="form-group col-12 col-lg-6">
-                                <label>*SKU</label>
-                                <input type="text" class="form-control " name="sku" required>
-                            </div>
-                            <div class="form-group col-12 col-lg-6">
-                                <label>*COLOR</label>
-                                <input type="text" class="form-control " name="color">
-                            </div>
-                            <div class="form-group col-12 col-lg-6">
-                                <label>*IMAGE</label>
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
-                                        '<img src="<?php echo BASEURL.$img['source_image_product'] ?>" alt="image" />
-                                    </div>
-                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                    <div>
-                                        <button type="button" class="btn btn-custom btn-file">
-                                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                            <input type="file" class="btn-light" name="imgProd[]"/>
-                                            <input type="hidden" name="id_image_product[]" value="<?php echo $img['id_image_product'] ?>">
-                                        </button>
-                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="form-group">
-                                    <label>QTY ITEM</label>
-                                    <input type="text" class="form-control" name="qty" required>
-                                </div>
-                                <div class="form-group">
-                                    <label>*HARGA</label>
-                                    <input type="text" class="form-control" name="harga" required>
-                                </div>
-                            </div>
-                            
+                    <div class="">
+                        <h4 class="m-t-0 header-title">Tambah Item Product</h4>
+                    </div>
+                    <form method="POST" action="<?php echo BASEURL.'product/itemproductTambah' ?>" class="" enctype="multipart/form-data">
+                        <input type="hidden" name="id_product" value="<?php echo $dataProd['id_product'] ?>">
+                        <div class="append-itemprod">
+                            <table class="table table-bordered" id="item_product">
+                                <tr>
+                                    <th>Form</th>
+                                    <th>
+                                        <button type="button" name="add" class="btn btn-success btn-sm additem" style="float:right;"><i class="fa fa-plus"></i></button>
+                                    </th>
+                                </tr>
+                                <?php foreach ($productItem as $key => $prodItem): ?>
+                                <input type="hidden" name="product_item_id[]" value="<?php echo $prodItem['product_item_id'] ?>">
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="form-group col-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label>*SKU</label>
+                                                    <input type="text" class="form-control " name="sku[]" value="<?php echo $prodItem['sku'] ?>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>*COLOR</label>
+                                                    <input type="text" class="form-control " name="color[]" value="<?php echo $prodItem['color'] ?>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>*SIZE</label>
+                                                    <input type="text" class="form-control" name="size[]" value="<?php echo $prodItem['size'] ?>" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label>QTY ITEM</label>
+                                                    <input type="number" class="form-control" name="qty[]" value="<?php echo $prodItem['qty_item'] ?>" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>*HARGA</label>
+                                                    <input type="number" class="form-control" name="harga[]" value="<?php echo $prodItem['harga'] ?>" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" name="remove" data-id="<?php echo $prodItem['product_item_id'] ?>" class="btn btn-danger btn-sm remove-additem"><i class="fa fa-minus"></button>
+                                    </td>
+                                </tr>
+                                <?php endforeach ?>
+                            </table>
                         </div>
+                        <button type="submit" class="btn btn-info">SUBMIT</button>
                     </form>
                 </div>
             </div>
@@ -212,10 +226,7 @@
 
 $(document).ready(function(){
 
- 
-
      $(document).on('click', '.add', function(){
-
         var html = '';
         html += '<tr>';
         html += '<td><div class="fileupload fileupload-new" data-provides="fileupload">'+
@@ -236,6 +247,42 @@ $(document).ready(function(){
         $('#item_table').append(html);
     });
 
+    $(document).on('click', '.additem', function(){
+        var html = '';
+        html += '<tr>';
+        html += '<td>'+
+                    '<div class="row">'+
+                        '<div class="form-group col-12 col-lg-6">'+
+                            '<div class="form-group">'+
+                                '<label>*SKU</label>'+
+                                '<input type="text" class="form-control " name="sku[]" required>'+
+                            '</div>'+
+                            '<div class="form-group">'+
+                                '<label>*COLOR</label>'+
+                                '<input type="text" class="form-control " name="color[]" required>'+
+                            '</div>'+
+                            '<div class="form-group">'+
+                                '<label>*SIZE</label>'+
+                                '<input type="text" class="form-control" name="size[]" required>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="col-12 col-lg-6">'+
+                            '<div class="form-group">'+
+                                '<label>QTY ITEM</label>'+
+                                '<input type="number" class="form-control" name="qty[]" required>'+
+                            '</div>'+
+                            '<div class="form-group">'+
+                                '<label>*HARGA</label>'+
+                                '<input type="number" class="form-control" name="harga[]" required>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</td>'+
+                '<td>'+
+                    '<button type="button" name="remove" class="btn btn-danger btn-sm remove-additem"><i class="fa fa-minus"></button>'+
+                '</td>';
+        $('#item_product').append(html);
+    });
 
     $(document).on('click', '.remove', function(){
         var confirmText = "Yakin Mau Di Hapus?";
@@ -243,6 +290,17 @@ $(document).ready(function(){
         $(this).closest('tr').remove();
         var id = $(this).data('id');
             $.post( "<?php echo BASEURL.'product/deleteImage' ?>", { id_delete: id }).done(function( data ) {
+                console.log( "Data Loaded: " + data );
+              });
+        }
+    });
+
+    $(document).on('click', '.remove-additem', function(){
+        var confirmText = "Yakin Mau Di Hapus?";
+        if(confirm(confirmText)) {
+        $(this).closest('tr').remove();
+        var id = $(this).data('id');
+            $.post( "<?php echo BASEURL.'product/deleteItemProd' ?>", { id_delete: id }).done(function( data ) {
                 console.log( "Data Loaded: " + data );
               });
         }
