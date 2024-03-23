@@ -97,10 +97,6 @@
                                     <li>
                                         <ul>
                                             <li><a href="<?php echo BASEURL.'product' ?>">Product</a></li>
-                                            <li><a href="<?php echo BASEURL.'itemproduct' ?>">Item Product</a></li>
-                                            <!-- <li><a href="<?php // echo BASEURL.'kategoriproduct' ?>">Kategori Product</a></li> -->
-                                            <li><a href="<?php echo BASEURL.'jenisproduct' ?>">Varian Product</a></li>
-                                            <!-- <li><a href="<?php // echo BASEURL.'tag' ?>">Tag</a></li> -->
                                         </ul>
                                     </li>
                                 </ul>
