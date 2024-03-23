@@ -19,7 +19,7 @@ class Product extends CI_Controller {
 
 	public function tambah($value='')
 	{
-		$viewData['kategori'] = $this->GlobalModel->getData('product_category',null);
+		$viewData['kategori'] = $this->GlobalModel->getData('kategori_product',array('parent_kategori'=>0));
 		$viewData['varian'] = $this->GlobalModel->getData('jenis_product',null);
 		
 		$viewData['brand'] = $this->GlobalModel->getData('brand_product',null);
@@ -49,8 +49,10 @@ class Product extends CI_Controller {
 
 		$dataInsert = array(
 			'nama_product'				=> $post['namaProduct'],
-			'gender_product'			=> $post['genderPakaian'],
+			'qty_item'					=> $post['qty_item'],
+			'gender_pakaian_product'	=> $post['genderPakaian'],
 			'created_date'				=> $post['tanggal'],
+			'harga_product'				=> $post['hargaProduct'],
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
@@ -101,10 +103,11 @@ class Product extends CI_Controller {
 
 	public function edit($id='')
 	{
-		$viewData['kategori'] = $this->GlobalModel->getData('product_category',null);
+		$viewData['kategori'] = $this->GlobalModel->getData('kategori_product',array('parent_kategori'=>0));
 		$viewData['image'] = $this->GlobalModel->getData('image_product',array('id_product'=>$id));
 		$viewData['brand'] = $this->GlobalModel->getData('brand_product',null);
 		$viewData['dataProd'] = $this->GlobalModel->getDataRow('product',array('id_product'=>$id));
+		$viewData['varian'] = $this->GlobalModel->getData('jenis_product',null);
 
 		$this->load->view('global/header');
 		$this->load->view('product/update',$viewData);
@@ -118,18 +121,18 @@ class Product extends CI_Controller {
 
 		$updateData = array(
 			'nama_product'				=> $post['namaProduct'],
-			'gender_product'			=> $post['genderPakaian'],
+			'qty_item'					=> $post['qty_item'],
+			'gender_pakaian_product'	=> $post['genderPakaian'],
 			'created_date'				=> $post['tanggal'],
+			'harga_product'				=> $post['hargaProduct'],
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
 			'status_product'			=> $post['status'],
 		);
-
 		$whereProd = array(
 			'id_product' => $post['id_product'] 
 		);
-
 		$this->GlobalModel->updateData('product',$whereProd,$updateData);
 
 		$arrayImg = array();
@@ -155,11 +158,9 @@ class Product extends CI_Controller {
 				'source_image_product'	=>	$imageGambar,
 				'id_product'			=>	$post['id_product']
 			);
-			
 			$whereImage = array(
 				'id_image_product' => $image 
 			);
-
 			if ($key == 0) {
 				$updateImage = array(
 					'product_image_front'	=>	(empty($this->upload->data('file_name')) ? $dataProduct[0]['source_image_product'] : $imageGambar),
@@ -167,6 +168,7 @@ class Product extends CI_Controller {
 				// pre($updateImage);
 				$this->GlobalModel->updateData('product',array('id_product'=>$post['id_product']),$updateImage);
 			}
+
 
 			$insertNewImage = $this->GlobalModel->getDataRow('image_product',$whereImage);
 			if (!empty($_FILES['imgProd']['name'][$key])) {
@@ -186,16 +188,4 @@ class Product extends CI_Controller {
 		echo "data berhasil di hapus";
 	}
 
-	public function getsubproduct($value='')
-	{
-		$post = $this->input->post();
-		$subprod = $this->GlobalModel->getData('productsub_category',array('id_product_category'=>$post['idprod']));
-		$html = '';
-		$html .= '<option>Pilih Sub Kategori</option>';
-		foreach ($subprod as $key => $sub) {
-			$html .= '<option value="'.$sub['id_productsub_category'].'">'.strtoupper($sub['name']).'</option>';
-		}
-
-		echo $html;
-	}
 }
