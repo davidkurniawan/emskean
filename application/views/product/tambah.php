@@ -58,19 +58,11 @@
                                             <option value="1">Hide</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label>*QTY</label>
-                                        <input type="number" class="form-control" name="qty_item" required>
-                                    </div>
                     			</div>
                     			<div class="col-6">
                     				<div class="form-group">
                     					<label>*Tanggal</label>
                     					<input type="date" class="form-control" name="tanggal" required>
-                    				</div>
-                    				<div class="form-group">
-                    					<label>*Harga Product</label>
-                    					<input type="number" class="form-control" name="hargaProduct" required>
                     				</div>
                                     <div class="form-group">
                                         <label>*Diskon Product</label>
