@@ -54,7 +54,6 @@
                                     <td><?php echo $prod['created_date'] ?></td> 
                                     <td>
                                         <a href="<?php echo BASEURL.'product/edit/'.$prod['id_product'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button href="<?php echo BASEURL.'product/edit/'.$prod['id_product'] ?>" class="btn btn-danger trash-confirm" data-idprod="<?php echo $prod['id_product'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
