@@ -11,7 +11,6 @@ class Product extends CI_Controller {
 	public function index()
 	{
 		$viewData['product'] = $this->GlobalModel->queryManual('SELECT pc.name as kategori, pct.name as sub_kategori, p.gender_product, p.diskon, p.created_date, p.id_administrator, a.nama as namabrand ,p.nama_product , p.status_product, p.id_product FROM product p JOIN product_category pc ON p.id_product_category=pc.id_product_category JOIN productsub_category pct ON p.id_productsub_category=pct.id_productsub_category JOIN administrator a ON p.id_administrator=a.id_administrator');
-
 		$this->load->view('global/header');
 		$this->load->view('product/view',$viewData);
 		$this->load->view('global/footer');
@@ -47,6 +46,8 @@ class Product extends CI_Controller {
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
 
+	    $this->load->library('upload', $config);
+
 		$dataInsert = array(
 			'nama_product'				=> $post['namaProduct'],
 			'gender_product'			=> $post['genderPakaian'],
@@ -57,6 +58,10 @@ class Product extends CI_Controller {
 			'status_product'			=> $post['status'],
 			'id_administrator'			=> $this->session->userdata('idAdmin')
 		);
+
+		if ($front = $this->upload->do_upload('imgFileFront')) {
+			$dataInsert['product_image_front'] = 'images/product/'.$this->upload->data('file_name');
+		}
 
 		$this->GlobalModel->insertData('product',$dataInsert);
 		$id_product = $this->db->insert_id();
@@ -71,7 +76,6 @@ class Product extends CI_Controller {
             $_FILES['imgFile']['error'] 	= $_FILES['imgProd']['error'][$key];
             $_FILES['imgFile']['size'] 		= $_FILES['imgProd']['size'][$key];
 
-	        $this->load->library('upload', $config);
             $this->upload->do_upload('imgFile');
 
 	        $imageGambar = 'images/product/'.$this->upload->data('file_name');
@@ -124,6 +128,13 @@ class Product extends CI_Controller {
 	public function editOnAction($value='')
 	{
 		$post = $this->input->post();
+
+		$config['upload_path'] = './images/product/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+
+	    $this->load->library('upload', $config);
+
 		$dataProduct = $this->GlobalModel->getData('image_product',array('id_product'=>$post['id_product']));
 
 		$updateData = array(
@@ -131,7 +142,7 @@ class Product extends CI_Controller {
 			'id_product_category'		=> $post['kategoriProduk'],
 			'id_productsub_category'	=> $post['subkategoriProduk'],
 			'gender_product'			=> $post['genderPakaian'],
-			'created_date'				=> $post['tanggal'],
+			'update_date'				=> date('Y-m-d H:i:s'),
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
@@ -143,11 +154,13 @@ class Product extends CI_Controller {
 			'id_product' => $post['id_product'] 
 		);
 
+		if ($front = $this->upload->do_upload('imgFileFront')) {
+			$updateData['product_image_front'] = 'images/product/'.$this->upload->data('file_name');
+		}
+
 		$this->GlobalModel->updateData('product',$whereProd,$updateData);
 		
-		$config['upload_path'] = './images/product/';
-        $config['allowed_types'] = '*';
-        $config['max_size'] = '2048';
+		
 
 		$arrayImg = array();
 		foreach ($_FILES['imgProd']['name'] as $key => $image) {
@@ -160,7 +173,6 @@ class Product extends CI_Controller {
             $_FILES['imgFile']['error'] 	= $_FILES['imgProd']['error'][$key];
             $_FILES['imgFile']['size'] 		= $_FILES['imgProd']['size'][$key];
 
-	        $this->load->library('upload', $config);
             if($this->upload->do_upload('imgFile')){
             	if (!empty($post['id_image_product'])) {
             		$imageGambar = 'images/product/'.$this->upload->data('file_name');

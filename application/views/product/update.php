@@ -77,6 +77,23 @@
                                             <option value="2" <?php if ($dataProd['status_product'] == 2) { echo "selected='selected'"; } ?>>Hide</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label>Image Featured</label>
+                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
+                                                <img src="<?php echo BASEURL.$dataProd['product_image_front'] ?>" alt="image" />
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                            <div>
+                                                <button type="button" class="btn btn-custom btn-file">
+                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                    <input type="file" class="btn-light" name="imgFileFront"/>
+                                                </button>
+                                                <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
                     			</div>
                     			<div class="col-6">
                                     <div class="form-group">

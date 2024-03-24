@@ -59,8 +59,21 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>*QTY</label>
-                                        <input type="number" class="form-control" name="qty_item" required>
+                                        <label>Image Featured</label>
+                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
+                                                <img src="<?php echo ASSETS ?>images/small/img-1.jpg" alt="image" />
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                            <div>
+                                                <button type="button" class="btn btn-custom btn-file">
+                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                    <input type="file" class="btn-light" name="imgFileFront"/>
+                                                </button>
+                                                <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                            </div>
+                                        </div>
                                     </div>
                     			</div>
                     			<div class="col-6">
@@ -76,9 +89,6 @@
 
                     			<div class="col-sm-12">
                     				<div class="table-responsive">
-                                        <div class="alert alert-primary" role="alert">
-                                            <strong>Gambar 1 untuk bagian depan</strong>. <strong>Gambar 1 untuk bagian depan</strong>, setelah nya bebas
-                                        </div>
 			                            <table class="table table-bordered" id="item_table">
 
 		                                <tr>
