@@ -41,6 +41,9 @@
                         <thead>
                         <tr>
                             <th>Product</th>
+                            <th>Brand</th>
+                            <th>Kategori</th>
+                            <th>Sub Kategori</th>
                             <th>Status</th>
                             <th>Created</th>
                             <th>Action</th>
@@ -50,7 +53,10 @@
                             <?php foreach ($product as $key => $prod): ?>
                                 <tr>
                                     <td><?php echo $prod['nama_product'] ?></td> 
-                                    <td><?php echo produkStatus($prod['status_product']) ?></td> 
+                                    <td><?php echo $prod['namabrand'] ?></td>
+                                    <td><?php echo $prod['kategori'] ?></td>
+                                    <td><?php echo $prod['sub_kategori'] ?></td>
+                                    <td><?php echo produkStatus($prod['status_product']) ?></td>
                                     <td><?php echo $prod['created_date'] ?></td> 
                                     <td>
                                         <a href="<?php echo BASEURL.'product/edit/'.$prod['id_product'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>

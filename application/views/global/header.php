@@ -86,7 +86,6 @@
                             <li class="has-submenu">
                                 <a href="<?php echo BASEURL.'dashboard' ?>"><i class="icon-speedometer"></i>Dashboard</a>
                             </li>
-                            <?php if ($this->session->userdata('flagAdmin') == 1): ?>  
                             <li class="has-submenu">
                                 <a href="<?php echo BASEURL.'banner' ?>"><i class="mdi mdi-image-filter"></i>Banner</a>
                                 
@@ -101,22 +100,7 @@
                                     </li>
                                 </ul>
                             </li>
-
                             
-
-
-                            <!-- <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-image-filter"></i>Tampilan</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="<?php echo BASEURL.'tampilan/banner' ?>">Banner</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> -->
-                            
-                            <?php endif ?>
 
                             <li class="has-submenu">
 
@@ -154,7 +138,6 @@
                                     <?php endif ?>
                                 </ul>
                             </li>
-                            <?php if ($this->session->userdata('flagAdmin') == 1): ?> 
                             <li class="has-submenu">
                                 <a href="#"><i class="icon-briefcase"></i>Produk Poin</a>
                                 <ul class="submenu megamenu">
@@ -169,12 +152,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <?php endif ?>
 
-                            <?php if ($this->session->userdata('flagAdmin') == 1): ?>
-                            <li class="has-submenu">
-                                <a href="<?php echo BASEURL.'user' ?>"><i class="fa fa-user"></i>User</a>
-                            </li>
                             <li class="has-submenu">
                                 <a href="#"><i class="icon-present"></i>Extra Pages</a>
                                 <ul class="submenu megamenu">
@@ -186,9 +164,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <?php endif ?>
-
                         </ul>
+
                         <!-- End navigation menu -->
                     </div> <!-- end #navigation -->
                 </div> <!-- end container -->

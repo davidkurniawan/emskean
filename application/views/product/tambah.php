@@ -64,10 +64,6 @@
                                     </div>
                     			</div>
                     			<div class="col-6">
-                    				<div class="form-group">
-                    					<label>*Tanggal</label>
-                    					<input type="date" class="form-control" name="tanggal" required>
-                    				</div>
                                     <div class="form-group">
                                         <label>*Diskon Product</label>
                                         <input type="number" class="form-control" name="diskon" >

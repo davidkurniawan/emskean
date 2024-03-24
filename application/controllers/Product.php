@@ -6,12 +6,12 @@ class Product extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		sessionLogin();
-		
 	}
 	
 	public function index()
 	{
-		$viewData['product'] = $this->GlobalModel->getData('product',null);
+		$viewData['product'] = $this->GlobalModel->queryManual('SELECT pc.name as kategori, pct.name as sub_kategori, p.gender_product, p.diskon, p.created_date, p.id_administrator, a.nama as namabrand ,p.nama_product , p.status_product, p.id_product FROM product p JOIN product_category pc ON p.id_product_category=pc.id_product_category JOIN productsub_category pct ON p.id_productsub_category=pct.id_productsub_category JOIN administrator a ON p.id_administrator=a.id_administrator');
+
 		$this->load->view('global/header');
 		$this->load->view('product/view',$viewData);
 		$this->load->view('global/footer');
@@ -50,11 +50,12 @@ class Product extends CI_Controller {
 		$dataInsert = array(
 			'nama_product'				=> $post['namaProduct'],
 			'gender_product'			=> $post['genderPakaian'],
-			'created_date'				=> $post['tanggal'],
+			'created_date'				=> date('Y-m-d H:i:s'),
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
 			'status_product'			=> $post['status'],
+			'id_administrator'			=> $this->session->userdata('idAdmin')
 		);
 
 		$this->GlobalModel->insertData('product',$dataInsert);
@@ -135,6 +136,7 @@ class Product extends CI_Controller {
 			'diskon'					=> $post['diskon'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
 			'status_product'			=> $post['status'],
+			'id_administrator'			=> $this->session->userdata('idAdmin')
 		);
 
 		$whereProd = array(

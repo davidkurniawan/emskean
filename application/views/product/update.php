@@ -79,10 +79,6 @@
                                     </div>
                     			</div>
                     			<div class="col-6">
-                    				<div class="form-group">
-                    					<label>Tanggal</label>
-                    					<input type="date" class="form-control" name="tanggal" value="<?php echo date('Y-m-d',strtotime($dataProd['created_date'])) ?>" required>
-                    				</div>
                                     <div class="form-group">
                                         <label>Diskon Produk</label>
                                         <input type="number" class="form-control" name="diskon" value="<?php echo $dataProd['diskon'] ?>">
