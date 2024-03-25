@@ -172,6 +172,10 @@
                                                     <input type="text" class="form-control " name="sku[]" value="<?php echo $prodItem['sku'] ?>" required>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>*NAME COLOR</label>
+                                                    <input type="text" class="form-control " name="nameColor[]" value="<?php echo $prodItem['name_color'] ?>" required>
+                                                </div>
+                                                <div class="form-group">
                                                     <label>*COLOR</label>
                                                     <input type="text" class="form-control " name="color[]" value="<?php echo $prodItem['color'] ?>" required>
                                                 </div>
@@ -269,6 +273,10 @@ $(document).ready(function(){
                             '<div class="form-group">'+
                                 '<label>*SKU</label>'+
                                 '<input type="text" class="form-control " name="sku[]" required>'+
+                            '</div>'+
+                            '<div class="form-group">'+
+                                '<label>*NAME COLOR</label>'+
+                                '<input type="text" class="form-control " name="nameColor[]" required>'+
                             '</div>'+
                             '<div class="form-group">'+
                                 '<label>*COLOR</label>'+

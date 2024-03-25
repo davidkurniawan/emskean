@@ -119,7 +119,6 @@ class Product extends CI_Controller {
 		$viewData['dataProd'] = $this->GlobalModel->getDataRow('product',array('id_product'=>$id));
 		$viewData['subkategori'] = $this->GlobalModel->getData('productsub_category',array('id_product_category'=>$viewData['dataProd']['id_product_category']));
 		$viewData['productItem'] = $this->GlobalModel->getData('product_item',array('id_product'=>$id));
-
 		$this->load->view('global/header');
 		$this->load->view('product/update',$viewData);
 		$this->load->view('global/footer');
@@ -228,6 +227,8 @@ class Product extends CI_Controller {
 					'sku'	=>	$sku,
 					'size'	=>	$post['size'][$key],
 					'color'	=>	$post['color'][$key],
+					'name_color'	=>	$post['nameColor'][$key],
+					'slug_color'	=>	url_title(strtolower($post['nameColor'][$key]),'-'),
 					'qty_item'	=>	$post['qty'][$key],
 					'harga'	=>	$post['harga'][$key],
 					'created_date'	=>	date('Y-m-d')
@@ -241,6 +242,8 @@ class Product extends CI_Controller {
 					'id_product'	=> $post['id_product'],
 					'sku'	=>	$sku,
 					'size'	=>	$post['size'][$key],
+					'name_color'	=>	$post['nameColor'][$key],
+					'slug_color'	=>	url_title(strtolower($post['nameColor'][$key]),'-'),
 					'color'	=>	$post['color'][$key],
 					'qty_item'	=>	$post['qty'][$key],
 					'harga'	=>	$post['harga'][$key],
@@ -254,4 +257,5 @@ class Product extends CI_Controller {
 
 		redirect(BASEURL.'product/edit/'.$post['id_product']);
 	}
+
 }
