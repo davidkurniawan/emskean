@@ -25,25 +25,13 @@
             <div class="col-md-12">
 
                 <div class="card-box">
-                    <h4 class="header-title m-t-0 m-b-20">Tambah Brand</h4>
+                    <h4 class="header-title m-t-0 m-b-20">Tambah Kategori</h4>
 
-                    <form method="POST" action="<?php echo BASEURL.'kategoriproduct/editOnAct' ?>">
+                    <form method="POST" action="<?php echo BASEURL.'productkategori/tambahact' ?>">
                     	<div class="form-group">
                     		<label>Nama Kategori</label>
-                            <input type="hidden" name="id_kategori_product" value="<?php echo $kategori['id_kategori_product'] ?>">
-                    		<input type="text" class="form-control" name="namaKategori" value="<?php echo $kategori['nama_kategori_product'] ?>" required>
+                    		<input type="text" class="form-control" name="name" required>
                     	</div>
-                        <div class="form-group">
-                            <label>Parent</label>
-                            <select class="form-control " name="parent">
-                                <option></option>
-                                <?php foreach ($kategoriParent as $key => $kat): ?>
-                                    <option <?php if ($kat['id_kategori_product'] == $kategori['parent_kategori']) {
-                                        echo "selected='selected'";
-                                    } ?> value="<?php echo $kat['parent_kategori'] ?>"><?php echo $kat['nama_kategori_product'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
                     	<button class="btn btn-info" type="submit">Submit</button>
                     </form>
                 </div>

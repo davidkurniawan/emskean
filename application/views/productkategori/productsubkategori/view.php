@@ -8,54 +8,34 @@
 <div class="wrapper">
     <div class="container-fluid">
 
-        <!-- Page-Title -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-title-box">
-                    <div class="btn-group pull-right">
-                        <ol class="breadcrumb hide-phone p-0 m-0">
-                            <li class="breadcrumb-item"><a href="#">Highdmin</a></li>
-                            <li class="breadcrumb-item"><a href="#">Components</a></li>
-                            <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                            <li class="breadcrumb-item active">Form Advanced</li>
-                        </ol>
-                    </div>
-                    <h4 class="page-title">Home Banner  </h4>
-                </div>
-            </div>
-        </div>
-        <!-- end page title end breadcrumb -->
-
         <div class="row">
             <div class="col-md-12">
                
                 <div class="card-box">
                     <div class="row mb-2" >
                         <div class="col-6">
-                            <h4 class="header-title m-t-0 m-b-20">Banner Tayang</h4>
+                            <h4 class="header-title m-t-0 m-b-20">Table Product Sub Kategori</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="<?php echo BASEURL.'banner/tambah' ?>" class="btn btn-info">Tambah</a>
+                            <a href="<?php echo BASEURL.'productsubkategori/tambah' ?>" class="btn btn-info">Tambah</a>
                         </div>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>title</th>
-                                <th>Image</th>
-                                <!-- <th>Image Two</th> -->
+                                <th>Nama Kategori</th>
+                                <th>Nama Sub Kategori</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($item as $key => $kat): ?>
+                            <?php foreach ($kategori as $key => $kat): ?>
                                 <tr>
-                                    <td><?php echo $kat['title'] ?></td>
-                                    <td><img src="<?php echo BASEURL.$kat['image'] ?>" style="height: 70px;"></td>
-                                    <!-- <td><img src="<?php // echo BASEURL.$kat['image_two'] ?>" style="height: 70px;"></td> -->
+                                    <td><?php echo $kat['kategori'] ?></td>
+                                    <td><?php echo $kat['subkategori'] ?></td>
                                     <td>
-                                        <a href="<?php echo BASEURL.'banner/edit/'.$kat['id_banner'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button class="btn btn-danger trash-confirm" data-idjenis="<?php echo $kat['id_banner'] ?>"><i class="fa fa-trash"></i></button>
+                                        <a href="<?php echo BASEURL.'productsubkategori/edit/'.$kat['id_productsub_category'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger trash-confirm" data-idkategori="<?php echo $kat['id_productsub_category'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -79,7 +59,7 @@
         $('.table').DataTable();
 
         $('.trash-confirm').on('click', function(){
-            var idprod = $(this).data('idjenis');
+            var idprod = $(this).data('idkategori');
             $.confirm({
                 title: 'A secure action',
                 content: 'Its smooth to do multiple confirms at a time. <br> Click confirm or cancel for another modal',
@@ -103,7 +83,7 @@
                                         text: 'Yes, sure!',
                                         btnClass: 'btn-orange',
                                         action: function(){
-                                            return $.post( "<?php echo BASEURL.'banner/deleteItem' ?>", { id_delete: idprod }).done(function( data ) {
+                                            return $.post( "<?php echo BASEURL.'productkategori/deletekategori' ?>", { id_delete: idprod }).done(function( data ) {
                                                 location.reload();
                                               });
                                             $.alert('A very critical action <strong>triggered!</strong>');

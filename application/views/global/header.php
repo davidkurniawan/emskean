@@ -88,7 +88,6 @@
                             </li>
                             <li class="has-submenu">
                                 <a href="<?php echo BASEURL.'banner' ?>"><i class="mdi mdi-image-filter"></i>Banner</a>
-                                
                             </li>  
                             <li class="has-submenu">
                                 <a href="#"><i class="mdi mdi-tshirt-v"></i>Product</a>
@@ -96,14 +95,13 @@
                                     <li>
                                         <ul>
                                             <li><a href="<?php echo BASEURL.'product' ?>">Product</a></li>
+                                            <li><a href="<?php echo BASEURL.'productkategori' ?>">Product Kategori</a></li>
+                                            <li><a href="<?php echo BASEURL.'productsubkategori' ?>">Product Sub Kategori</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            
-
                             <li class="has-submenu">
-
                                 <a href="#"><i class="fa fa-money"></i>Transaksi Orders</a>
                                 <ul class="submenu">
                                     <li><a href="<?php echo BASEURL.'transaksi/hariini' ?>">Transaksi Hari Ini</a></li>
@@ -123,12 +121,9 @@
                                         <li><a href="<?php echo BASEURL.'turnpayment' ?>">Turn OFF/ON Payment</a></li>
                                     <?php endif ?>
                                         <li><a href="<?php echo BASEURL.'transaksi/allcabang' ?>">Credit BiteShip</a></li>
-
                                 </ul>
                             </li>
-
                             <li class="has-submenu">
-
                                 <a href="#"><i class="fa fa-money"></i>Pengiriman</a>
                                 <ul class="submenu">
                                     <li><a href="<?php echo BASEURL.'pengiriman' ?>">Proses</a></li>
@@ -152,18 +147,9 @@
                                     </li>
                                 </ul>
                             </li>
-
                             <li class="has-submenu">
-                                <a href="#"><i class="icon-present"></i>Extra Pages</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            <li><a href="<?php echo BASEURL.'beautytips' ?>">Diary News</a></li>
-                                            <li><a href="<?php echo BASEURL.'mediasocialpost' ?>">Media Social Post</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                                <a href="<?php echo BASEURL.'news' ?>"><i class="mdi mdi-image-filter"></i>News</a>
+                            </li> 
                         </ul>
 
                         <!-- End navigation menu -->

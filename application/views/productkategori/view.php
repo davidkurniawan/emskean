@@ -8,24 +8,6 @@
 <div class="wrapper">
     <div class="container-fluid">
 
-        <!-- Page-Title -->
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-title-box">
-                    <div class="btn-group pull-right">
-                        <ol class="breadcrumb hide-phone p-0 m-0">
-                            <li class="breadcrumb-item"><a href="#">Highdmin</a></li>
-                            <li class="breadcrumb-item"><a href="#">Components</a></li>
-                            <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                            <li class="breadcrumb-item active">Form Advanced</li>
-                        </ol>
-                    </div>
-                    <h4 class="page-title">Kategori </h4>
-                </div>
-            </div>
-        </div>
-        <!-- end page title end breadcrumb -->
-
         <div class="row">
             <div class="col-md-12">
                
@@ -35,25 +17,25 @@
                             <h4 class="header-title m-t-0 m-b-20">Table Kategori</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="<?php echo BASEURL.'kategoriproduct/tambah' ?>" class="btn btn-info">Tambah</a>
+                            <a href="<?php echo BASEURL.'productkategori/tambah' ?>" class="btn btn-info">Tambah</a>
                         </div>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama Kategori</th>
-                                <th>Url</th>
+                                <th>Slug</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($kategori as $key => $kat): ?>
                                 <tr>
-                                    <td><?php echo $kat['nama_kategori_product'] ?></td>
-                                    <td><?php echo $kat['url_kategori_product'] ?></td>
+                                    <td><?php echo $kat['name'] ?></td>
+                                    <td><?php echo $kat['slug'] ?></td>
                                     <td>
-                                        <a href="<?php echo BASEURL.'kategoriproduct/edit/'.$kat['id_kategori_product'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button class="btn btn-danger trash-confirm" data-idkategori="<?php echo $kat['id_kategori_product'] ?>"><i class="fa fa-trash"></i></button>
+                                        <a href="<?php echo BASEURL.'productkategori/edit/'.$kat['id_product_category'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger trash-confirm" data-idkategori="<?php echo $kat['id_product_category'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -101,7 +83,7 @@
                                         text: 'Yes, sure!',
                                         btnClass: 'btn-orange',
                                         action: function(){
-                                            return $.post( "<?php echo BASEURL.'kategoriproduct/deletekategori' ?>", { id_delete: idprod }).done(function( data ) {
+                                            return $.post( "<?php echo BASEURL.'productkategori/deletekategori' ?>", { id_delete: idprod }).done(function( data ) {
                                                 location.reload();
                                               });
                                             $.alert('A very critical action <strong>triggered!</strong>');

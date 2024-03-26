@@ -25,22 +25,21 @@
             <div class="col-md-12">
 
                 <div class="card-box">
-                    <h4 class="header-title m-t-0 m-b-20">Tambah Brand</h4>
+                    <h4 class="header-title m-t-0 m-b-20">Form Kategori</h4>
 
-                    <form method="POST" action="<?php echo BASEURL.'kategoriproduct/tambahact' ?>">
-                    	<div class="form-group">
-                    		<label>Nama Kategori</label>
-                    		<input type="text" class="form-control" name="namaKategori" required>
-                    	</div>
+                    <form method="POST" action="<?php echo BASEURL.'productsubkategori/tambahact' ?>">
                         <div class="form-group">
-                            <label>Parent</label>
-                            <select class="form-control " name="parent">
-                                <option></option>
+                            <label>Kategori</label>
+                            <select class="form-control" name="kategori">
                                 <?php foreach ($kategori as $key => $kat): ?>
-                                    <option value="<?php echo $kat['parent_kategori'] ?>"><?php echo $kat['nama_kategori_product'] ?></option>
+                                    <option value="<?php echo $kat['id_product_category'] ?>"><?php echo $kat['name'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
+                    	<div class="form-group">
+                    		<label>Nama Sub Kategori</label>
+                    		<input type="text" class="form-control" name="name" required>
+                    	</div>
                     	<button class="btn btn-info" type="submit">Submit</button>
                     </form>
                 </div>
