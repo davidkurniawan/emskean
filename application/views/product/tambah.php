@@ -51,6 +51,20 @@
 		                    			</select>
 		                    		</div>
                                     <div class="form-group">
+                                        <label>Kategori Produk</label>
+                                        <select class="form-control" name="kategoriProduk" id="kategoriProduk" required>
+                                            <option value="">Piih Kategori</option>
+                                            <?php foreach ($kategori as $key => $kat): ?>
+                                                <option value="<?php echo $kat['id_product_category'] ?>"><?php echo strtoupper($kat['name']) ?></option>
+                                            <?php endforeach ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori Sub Produk</label>
+                                        <select class="form-control" name="subkategoriProduk" id="subkategoriProduk" required>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Status Product</label>
                                         <select class="form-control" name="status" required>
                                             <option value="0">Publish</option>
@@ -90,16 +104,11 @@
                     			<div class="col-sm-12">
                     				<div class="table-responsive">
 			                            <table class="table table-bordered" id="item_table">
-
 		                                <tr>
 		                                    <th>IMAGES</th>
-
 		                                    <th><button type="button" name="add" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i></button></th>
-
 		                                </tr>
-
 		                                </table>
-
 			                        </div>
                     				<button class="btn btn-info" type="submit">Submit</button>
                     			</div>
@@ -131,7 +140,12 @@
             maxHeight: null,             // set maximum height of editor
             focus: false                 // set focus to editable area after initializing summernote
         });
-
+        $('#kategoriProduk').change(function () {
+            var idprod = $(this).find('option:selected').val();
+            $.post( "<?php echo BASEURL.'product/getsubproduct' ?>", { idprod:idprod }).done(function( data ) {
+                $('#subkategoriProduk').html(data);
+            });
+        });
     });
 </script>
 

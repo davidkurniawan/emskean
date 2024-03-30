@@ -46,11 +46,18 @@ class Product extends CI_Controller {
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
 
+        if (!is_dir('images/product/'.date('Y-m-d')))
+	    {
+	        mkdir('./images/product/'.date('Y-m-d'), 0777, true);
+	    }
+
 	    $this->load->library('upload', $config);
 
 		$dataInsert = array(
 			'nama_product'				=> $post['namaProduct'],
 			'gender_product'			=> $post['genderPakaian'],
+			'id_product_category'		=> $post['kategoriProduk'],
+			'id_productsub_category'	=> $post['subkategoriProduk'],
 			'created_date'				=> date('Y-m-d H:i:s'),
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
@@ -60,7 +67,7 @@ class Product extends CI_Controller {
 		);
 
 		if ($front = $this->upload->do_upload('imgFileFront')) {
-			$dataInsert['product_image_front'] = 'images/product/'.$this->upload->data('file_name');
+			$dataInsert['product_image_front'] = 'images/product/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 		}
 
 		$this->GlobalModel->insertData('product',$dataInsert);
@@ -78,7 +85,7 @@ class Product extends CI_Controller {
 
             $this->upload->do_upload('imgFile');
 
-	        $imageGambar = 'images/product/'.$this->upload->data('file_name');
+	        $imageGambar = 'images/product/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 	        $arrayImg[] = $imageGambar;
 			$dataImage = array(
 				'source_image_product'	=>	$imageGambar,
@@ -128,11 +135,16 @@ class Product extends CI_Controller {
 	{
 		$post = $this->input->post();
 
-		$config['upload_path'] = './images/product/';
+		$config['upload_path'] = './images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
 
 	    $this->load->library('upload', $config);
+
+	    if (!is_dir('images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d')))
+	    {
+	        mkdir('./images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d'), 0777, true);
+	    }
 
 		$dataProduct = $this->GlobalModel->getData('image_product',array('id_product'=>$post['id_product']));
 
@@ -154,7 +166,7 @@ class Product extends CI_Controller {
 		);
 
 		if ($front = $this->upload->do_upload('imgFileFront')) {
-			$updateData['product_image_front'] = 'images/product/'.$this->upload->data('file_name');
+			$updateData['product_image_front'] = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 		}
 
 		$this->GlobalModel->updateData('product',$whereProd,$updateData);
@@ -174,7 +186,7 @@ class Product extends CI_Controller {
 
             if($this->upload->do_upload('imgFile')){
             	if (!empty($post['id_image_product'])) {
-            		$imageGambar = 'images/product/'.$this->upload->data('file_name');
+            		$imageGambar = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 			        $arrayImg[] = $imageGambar;
 					$dataImage = array(
 						'source_image_product'	=>	$imageGambar,
@@ -182,7 +194,7 @@ class Product extends CI_Controller {
 					);
 					$this->GlobalModel->updateData('image_product',array('id_image_product'=>$post['id_image_product'][$key]),$dataImage);
             	} else {
-			        $imageGambar = 'images/product/'.$this->upload->data('file_name');
+			        $imageGambar = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 			        $arrayImg[] = $imageGambar;
 					$dataImage = array(
 						'source_image_product'	=>	$imageGambar,
@@ -192,6 +204,7 @@ class Product extends CI_Controller {
             	}
             }
 		}
+		chmod('./images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d'), 0755);
 
 		redirect(BASEURL.'product/edit/'.$post['id_product']);
 		

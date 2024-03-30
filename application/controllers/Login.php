@@ -27,9 +27,9 @@ class Login extends CI_Controller {
 				'userNama' 	=> $dataAdmin['nama'],
 				'email'		=> $dataAdmin['email'],
 				'loggedin'	=> TRUE,
+				'brandSlug'	=>	$dataAdmin['brand_slug'],
 				'idAdmin'	=>	$dataAdmin['id_administrator'],
 				'flagAdmin'	=>	$dataAdmin['flag_admin']
-
 			);
 			$this->session->set_userdata($data);
 			redirect(BASEURL.'dashboard');
