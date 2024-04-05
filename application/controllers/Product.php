@@ -42,13 +42,13 @@ class Product extends CI_Controller {
 	{
 		$post = $this->input->post();
 
-		$config['upload_path'] = './images/product/';
+		$config['upload_path'] = './images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
 
-        if (!is_dir('images/product/'.date('Y-m-d')))
+        if (!is_dir('images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d')))
 	    {
-	        mkdir('./images/product/'.date('Y-m-d'), 0777, true);
+	        mkdir('./images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d'), 0777, true);
 	    }
 
 	    $this->load->library('upload', $config);
@@ -61,45 +61,20 @@ class Product extends CI_Controller {
 			'created_date'				=> date('Y-m-d H:i:s'),
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
+			'harga'						=> $post['harga'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
 			'status_product'			=> $post['status'],
 			'id_administrator'			=> $this->session->userdata('idAdmin')
 		);
 
 		if ($front = $this->upload->do_upload('imgFileFront')) {
-			$dataInsert['product_image_front'] = 'images/product/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+			$updateData['product_image_front'] = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 		}
 
 		$this->GlobalModel->insertData('product',$dataInsert);
 		$id_product = $this->db->insert_id();
-		$arrayImg = array();
-		foreach ($_FILES['imgProd']['name'] as $key => $image) {
-			$array[] = $image;
 
-        	$config['file_name'] = $_FILES['imgProd']['name'][$key];
-			$_FILES['imgFile']['name'] 		= $_FILES['imgProd']['name'][$key];
-            $_FILES['imgFile']['type'] 		= $_FILES['imgProd']['type'][$key];
-            $_FILES['imgFile']['tmp_name'] 	= $_FILES['imgProd']['tmp_name'][$key];
-            $_FILES['imgFile']['error'] 	= $_FILES['imgProd']['error'][$key];
-            $_FILES['imgFile']['size'] 		= $_FILES['imgProd']['size'][$key];
-
-            $this->upload->do_upload('imgFile');
-
-	        $imageGambar = 'images/product/'.date('Y-m-d').'/'.$this->upload->data('file_name');
-	        $arrayImg[] = $imageGambar;
-			$dataImage = array(
-				'source_image_product'	=>	$imageGambar,
-				'id_product'			=>	$id_product
-			);
-			$this->GlobalModel->insertData('image_product',$dataImage);
-		}
-		$updateImage = array(
-			'product_image_front'	=>	$arrayImg[0],
-		);
-
-		$this->GlobalModel->updateData('product',array('id_product'=>$id_product),$updateImage);
-
-		redirect(BASEURL.'product');
+		redirect(BASEURL.'product/edit/'.$id_product);
 	}
 
 	public function deleteImage($value='')
@@ -156,6 +131,7 @@ class Product extends CI_Controller {
 			'update_date'				=> date('Y-m-d H:i:s'),
 			'deskripsi_product'			=> $post['deskripsi'],
 			'diskon'					=> $post['diskon'],
+			'harga'					=> $post['harga'],
 			'url_product'				=> url_title(strtolower($post['namaProduct'])),
 			'status_product'			=> $post['status'],
 			'id_administrator'			=> $this->session->userdata('idAdmin')
@@ -232,40 +208,45 @@ class Product extends CI_Controller {
 
 	public function itemproductTambah($value='')
 	{
+		$config['upload_path'] = './images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+
+	    $this->load->library('upload', $config);
+
 		$post = $this->input->post();
-		if (!empty($post['product_item_id'])) {
-			foreach ($post['sku'] as $key => $sku) {
-				$insertData = array(
-					'id_product'	=> $post['id_product'],
-					'sku'	=>	$sku,
-					'size'	=>	$post['size'][$key],
-					'color'	=>	$post['color'][$key],
-					'name_color'	=>	$post['nameColor'][$key],
-					'slug_color'	=>	url_title(strtolower($post['nameColor'][$key]),'-'),
-					'qty_item'	=>	$post['qty'][$key],
-					'harga'	=>	$post['harga'][$key],
-					'created_date'	=>	date('Y-m-d')
-				);
 
-				$this->GlobalModel->updateData('product_item',array('product_item_id'=>$post['product_item_id'][$key]),$insertData);
+		foreach ($post['sku'] as $key => $sku) {
+
+			$_FILES['imgFile']['name'] 		= $_FILES['imgProd']['name'][$key];
+            $_FILES['imgFile']['type'] 		= $_FILES['imgProd']['type'][$key];
+            $_FILES['imgFile']['tmp_name'] 	= $_FILES['imgProd']['tmp_name'][$key];
+            $_FILES['imgFile']['error'] 	= $_FILES['imgProd']['error'][$key];
+            $_FILES['imgFile']['size'] 		= $_FILES['imgProd']['size'][$key];
+
+			$insertData = array(
+				'id_product'	=> $post['id_product'],
+				'sku'	=>	$sku,
+				'size'	=>	$post['size'][$key],
+				'color'	=>	$post['color'][$key],
+				'name_color'	=>	$post['nameColor'][$key],
+				'slug_color'	=>	url_title(strtolower($post['nameColor'][$key]),'-'),
+				'qty_item'	=>	$post['qty'][$key],
+				'harga'	=>	$post['harga'][$key],
+				'created_date'	=>	date('Y-m-d')
+			);
+
+			if($this->upload->do_upload('imgFile')){
+				$imageGambar = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+				$insertData['source_image_product'] = $imageGambar;
 			}
-		} else {
-			foreach ($post['sku'] as $key => $sku) {
-				$insertData = array(
-					'id_product'	=> $post['id_product'],
-					'sku'	=>	$sku,
-					'size'	=>	$post['size'][$key],
-					'name_color'	=>	$post['nameColor'][$key],
-					'slug_color'	=>	url_title(strtolower($post['nameColor'][$key]),'-'),
-					'color'	=>	$post['color'][$key],
-					'qty_item'	=>	$post['qty'][$key],
-					'harga'	=>	$post['harga'][$key],
-					'created_date'	=>	date('Y-m-d')
-				);
-
+			if (!empty($post['product_item_id'][$key])) {
+				$this->GlobalModel->updateData('product_item',array('product_item_id'=>$post['product_item_id'][$key]),$insertData);
+			} else {
 				$this->GlobalModel->insertData('product_item',$insertData);
 			}
 		}
+		
 		
 
 		redirect(BASEURL.'product/edit/'.$post['id_product']);

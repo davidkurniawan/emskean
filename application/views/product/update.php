@@ -100,6 +100,10 @@
                                         <label>Diskon Produk</label>
                                         <input type="number" class="form-control" name="diskon" value="<?php echo $dataProd['diskon'] ?>">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Harga</label>
+                                        <input type="number" class="form-control" name="harga" value="<?php echo $dataProd['harga'] ?>" required>
+                                    </div>
                     				<div class="form-group">
                     					<label>Deksripsi</label>
                     					<textarea class="form-control summernote" name="deskripsi"  required><?php echo $dataProd['deskripsi_product'] ?></textarea>
@@ -192,6 +196,20 @@
                                                 <div class="form-group">
                                                     <label>*HARGA</label>
                                                     <input type="number" class="form-control" name="harga[]" value="<?php echo $prodItem['harga'] ?>" required>
+                                                </div>
+                                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                    <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
+                                                        <img src="<?php echo BASEURL.$prodItem['source_image_product'] ?>" alt="image" />
+                                                    </div>
+                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                                    <div>
+                                                        <button type="button" class="btn btn-custom btn-file">
+                                                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                            <input type="file" class="btn-light" name="imgProd[]"/>
+                                                        </button>
+                                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -295,6 +313,20 @@ $(document).ready(function(){
                             '<div class="form-group">'+
                                 '<label>*HARGA</label>'+
                                 '<input type="number" class="form-control" name="harga[]" required>'+
+                            '</div>'+
+                            '<div class="fileupload fileupload-new" data-provides="fileupload">'+
+                                '<div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">'+
+                                    '<img src="<?php echo ASSETS ?>images/small/img-1.jpg" alt="image" />'+
+                                '</div>'+
+                                '<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>'+
+                                '<div>'+
+                                    '<button type="button" class="btn btn-custom btn-file">'+
+                                        '<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>'+
+                                        '<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>'+
+                                        '<input type="file" class="btn-light" name="imgProd[]"/>'+
+                                    '</button>'+
+                                    '<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>'+
+                                '</div>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+

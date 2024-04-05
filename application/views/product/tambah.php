@@ -95,6 +95,10 @@
                                         <label>*Diskon Product</label>
                                         <input type="number" class="form-control" name="diskon" >
                                     </div>
+                                    <div class="form-group">
+                                        <label>Harga</label>
+                                        <input type="number" name="harga" class="form-control" required>
+                                    </div>
                     				<div class="form-group">
                     					<label>*Deksripsi</label>
                     					<textarea class="form-control summernote" name="deskripsi"  required></textarea>
