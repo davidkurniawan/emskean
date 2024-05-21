@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller {
 				$this->GlobalModel->updateData('transaction_order',array('transaction_order_id'=>$value['transaction_order_id'],'transaction_status'=>1),array('transaction_status'=>3));
 			}
 		}
+		
 		$this->load->view('global/header');
 		$this->load->view('dashboard/view');
 		$this->load->view('global/footer');
