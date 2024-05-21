@@ -95,8 +95,8 @@
                                     <li>
                                         <ul>
                                             <li><a href="<?php echo BASEURL.'product' ?>">Product</a></li>
-                                            <!-- <li><a href="<?php echo BASEURL.'productkategori' ?>">Product Kategori</a></li> -->
-                                            <!-- <li><a href="<?php echo BASEURL.'productsubkategori' ?>">Product Sub Kategori</a></li> -->
+                                            <li><a href="<?php echo BASEURL.'productkategori' ?>">Product Kategori</a></li>
+                                            <li><a href="<?php echo BASEURL.'productsubkategori' ?>">Product Sub Kategori</a></li>
                                         </ul>
                                     </li>
                                 </ul>

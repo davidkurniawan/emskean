@@ -19,8 +19,9 @@ class Banner extends CI_Controller {
 
 	public function tambah($value='')
 	{
+		$viewData['category'] = $this->GlobalModel->getData('banner_category',null);
 		$this->load->view('global/header');
-		$this->load->view('banner/tambah');
+		$this->load->view('banner/tambah',$viewData);
 		$this->load->view('global/footer');
 	}
 
@@ -38,7 +39,7 @@ class Banner extends CI_Controller {
 
 		$dataInsert = array(
 			'title'			=>	$post['title'],
-			'page'			=>	$post['page'],
+			'id_banner_category'			=>	$post['page'],
 			'description'	=>	$post['description'],
 			'created_date'	=>	date('Y-m-d'),
 			'image'			=>	'images/banner/'.$fileOne['file_name'],
@@ -51,6 +52,7 @@ class Banner extends CI_Controller {
 
 	public function edit($id='')
 	{
+		$viewData['category'] = $this->GlobalModel->getData('banner_category',null);
 		$viewData['item']	=	$this->GlobalModel->getDataRow('banner',array('id_banner'=>$id));
 		$this->load->view('global/header');
 		$this->load->view('banner/update',$viewData);
@@ -73,7 +75,7 @@ class Banner extends CI_Controller {
 		$dataInsert = array(
 			'title'			=>	$post['title'],
 			'description'	=>	$post['description'],
-			'page'			=>	$post['page'],
+			'id_banner_category'			=>	$post['page'],
 			'image'			=>	((!empty($fileOne['file_name'])) ? 'images/banner/'.$fileOne['file_name'] : $dataBan['image']),
 		);
 

@@ -28,9 +28,16 @@ class Productkategori extends CI_Controller {
 	{
 		$post = $this->input->post();
 
+		$config['upload_path']          = './images/category/';
+        $config['allowed_types']        = '*';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+
 		$insertData = array(
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
+			'image'	=>	$this->upload->data('file_name'),
 			'created_date'	=>	date('Y-m-d')
 		);
 
@@ -52,11 +59,20 @@ class Productkategori extends CI_Controller {
 	{
 		$post = $this->input->post();
 
+		$config['upload_path']          = './images/category/';
+        $config['allowed_types']        = '*';
+
+        $this->load->library('upload', $config);
+        
 		$updateData = array(
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'created_date'	=>	date('Y-m-d')
 		);
+
+		if ($front = $this->upload->do_upload('image')) {
+			$updateData['image'] = 'images/category/'.$this->upload->data('file_name');
+		}
 
 		$this->GlobalModel->updateData('product_category',array('id_product_category'=>$value),$updateData);
 

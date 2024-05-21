@@ -29,10 +29,17 @@ class Productsubkategori extends CI_Controller {
 	{
 		$post = $this->input->post();
 
+		$config['upload_path']          = './images/category/';
+        $config['allowed_types']        = '*';
+
+        $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+
 		$insertData = array(
 			'id_product_category'	=>	$post['kategori'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
+			'image'	=>	$this->upload->data('file_name'),
 			'created_date'	=>	date('Y-m-d')
 		);
 
@@ -55,12 +62,21 @@ class Productsubkategori extends CI_Controller {
 	{
 		$post = $this->input->post();
 
+		$config['upload_path']          = './images/category/';
+        $config['allowed_types']        = '*';
+
+        $this->load->library('upload', $config);
+        
 		$updateData = array(
 			'id_product_category'	=>	$post['kategori'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'created_date'	=>	date('Y-m-d')
 		);
+
+		if ($front = $this->upload->do_upload('image')) {
+			$updateData['image'] = 'images/category/'.$this->upload->data('file_name');
+		}
 
 		$this->GlobalModel->updateData('productsub_category',array('id_productsub_category'=>$value),$updateData);
 

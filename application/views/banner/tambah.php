@@ -39,8 +39,9 @@
                         <div class="form-group">
                             <label>Page</label>
                             <select class="form-control" name="page" required>
-                                <option value="home">home</option>
-                                <option value="reseller">reseller</option>
+                                <?php foreach ($category as $key => $cat): ?>
+                                    <option value="<?php echo $cat['id_banner_category'] ?>"><?php echo $cat['name'] ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
                         <div class="form-group row">
