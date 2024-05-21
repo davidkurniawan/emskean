@@ -95,13 +95,13 @@
                                     <li>
                                         <ul>
                                             <li><a href="<?php echo BASEURL.'product' ?>">Product</a></li>
-                                            <li><a href="<?php echo BASEURL.'productkategori' ?>">Product Kategori</a></li>
-                                            <li><a href="<?php echo BASEURL.'productsubkategori' ?>">Product Sub Kategori</a></li>
+                                            <!-- <li><a href="<?php echo BASEURL.'productkategori' ?>">Product Kategori</a></li> -->
+                                            <!-- <li><a href="<?php echo BASEURL.'productsubkategori' ?>">Product Sub Kategori</a></li> -->
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="has-submenu">
+                            <!-- <li class="has-submenu">
                                 <a href="#"><i class="fa fa-money"></i>Transaksi Orders</a>
                                 <ul class="submenu">
                                     <li><a href="<?php echo BASEURL.'transaksi/hariini' ?>">Transaksi Hari Ini</a></li>
@@ -122,8 +122,8 @@
                                     <?php endif ?>
                                         <li><a href="<?php echo BASEURL.'transaksi/allcabang' ?>">Credit BiteShip</a></li>
                                 </ul>
-                            </li>
-                            <li class="has-submenu">
+                            </li> -->
+                            <!-- <li class="has-submenu">
                                 <a href="#"><i class="fa fa-money"></i>Pengiriman</a>
                                 <ul class="submenu">
                                     <li><a href="<?php echo BASEURL.'pengiriman' ?>">Proses</a></li>
@@ -132,21 +132,21 @@
                                         <li><a href="<?php echo BASEURL.'eventdiary' ?>">Event Ambil Sendiri</a></li>
                                     <?php endif ?>
                                 </ul>
-                            </li>
-                            <li class="has-submenu">
+                            </li> -->
+                            <!-- <li class="has-submenu">
                                 <a href="#"><i class="icon-briefcase"></i>Produk Poin</a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
                                             
-                                            <!-- <li><a href="<?php // echo BASEURL.'pemasaran/voucher' ?>">Voucher</a></li> -->
+                                            <li><a href="<?php // echo BASEURL.'pemasaran/voucher' ?>">Voucher</a></li>
                                             <li><a href="<?php echo BASEURL.'pemasaran/produkpoin' ?>">Produk Poin</a></li>
                                             <li><a href="<?php echo BASEURL.'redeempoin' ?>">Redeem Poin</a></li>
                                             <li><a href="<?php echo BASEURL.'claimreferral' ?>">Claim Referral</a></li>
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="has-submenu">
                                 <a href="<?php echo BASEURL.'news' ?>"><i class="mdi mdi-image-filter"></i>News</a>
                             </li> 

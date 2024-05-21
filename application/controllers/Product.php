@@ -68,7 +68,7 @@ class Product extends CI_Controller {
 		);
 
 		if ($front = $this->upload->do_upload('imgFileFront')) {
-			$updateData['product_image_front'] = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+			$dataInsert['product_image_front'] = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 		}
 
 		$this->GlobalModel->insertData('product',$dataInsert);
