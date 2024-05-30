@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Productsubkategori extends CI_Controller {
+class Newskategori extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -10,18 +10,17 @@ class Productsubkategori extends CI_Controller {
 	
 	public function index()
 	{
-		$viewData['kategori'] = $this->GlobalModel->queryManual("SELECT psc.id_productsub_category, psc.name as subkategori, psc.slug, pc.name as kategori FROM productsub_category psc JOIN product_category pc ON psc.id_product_category=pc.id_product_category");
-
+		$viewData['kategori'] = $this->GlobalModel->getData('news_kategori',null);
 		$this->load->view('global/header');
-		$this->load->view('productkategori/productsubkategori/view',$viewData);
+		$this->load->view('newskategori/view',$viewData);
 		$this->load->view('global/footer');
 	}
 
 	public function tambah($value='')
 	{
-		$viewData['kategori'] = $this->GlobalModel->getData('product_category',null);
+		$viewData['kategori'] = $this->GlobalModel->getData('news_kategori',null);
 		$this->load->view('global/header');
-		$this->load->view('productkategori/productsubkategori/tambah',$viewData);
+		$this->load->view('newskategori/tambah',$viewData);
 		$this->load->view('global/footer');
 	}
 
@@ -36,25 +35,24 @@ class Productsubkategori extends CI_Controller {
         $this->upload->do_upload('image');
 
 		$insertData = array(
-			'id_product_category'	=>	$post['kategori'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
-			'image'	=>	$this->upload->data('file_name'),
-			'created_date'	=>	date('Y-m-d')
+			'image'	=>	'images/category/'.$this->upload->data('file_name'),
+			'created_date'	=>	date('Y-m-d'),
+			'id_admin'	=>	$this->session->userdata('idAdmin'),
 		);
 
-		$this->GlobalModel->insertData('productsub_category',$insertData);
+		$this->GlobalModel->insertData('news_kategori',$insertData);
 		
-		redirect(BASEURL.'productsubkategori');
+		redirect(BASEURL.'newskategori');
 	}
 
 	public function edit($value='')
 	{
-		$viewData['kategori'] = $this->GlobalModel->getData('product_category',null);
-		$viewData['sub'] = $this->GlobalModel->getDataRow('productsub_category',array('id_productsub_category'=>$value));
+		$viewData['kategori'] = $this->GlobalModel->getDataRow('news_kategori',array('id_news_kategori'=>$value));
 
 		$this->load->view('global/header');
-		$this->load->view('productkategori/productsubkategori/update',$viewData);
+		$this->load->view('newskategori/update',$viewData);
 		$this->load->view('global/footer');
 	}
 
@@ -68,7 +66,6 @@ class Productsubkategori extends CI_Controller {
         $this->load->library('upload', $config);
         
 		$updateData = array(
-			'id_product_category'	=>	$post['kategori'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'created_date'	=>	date('Y-m-d')
@@ -78,15 +75,15 @@ class Productsubkategori extends CI_Controller {
 			$updateData['image'] = 'images/category/'.$this->upload->data('file_name');
 		}
 
-		$this->GlobalModel->updateData('productsub_category',array('id_productsub_category'=>$value),$updateData);
+		$this->GlobalModel->updateData('news_kategori',array('id_news_kategori'=>$value),$updateData);
 
-		redirect(BASEURL.'productsubkategori');
+		redirect(BASEURL.'newskategori');
 	}
 
 	public function deletekategori($value='')
 	{
 		$post = $this->input->post();
-		$this->GlobalModel->deleteData('productsub_category',array('id_productsub_category'=>$post['id_delete']));
+		$this->GlobalModel->deleteData('news_kategori',array('id_news_kategori'=>$post['id_delete']));
 		echo "data berhasil dihapus";
 	}
 }

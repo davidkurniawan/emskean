@@ -148,8 +148,18 @@
                                 </ul>
                             </li> -->
                             <li class="has-submenu">
-                                <a href="<?php echo BASEURL.'news' ?>"><i class="mdi mdi-image-filter"></i>News</a>
-                            </li> 
+                                <a href="#"><i class="icon-briefcase"></i>News</a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                        <ul>
+                                            
+                                            <li><a href="<?php echo BASEURL.'news' ?>">News</a></li>
+                                            <li><a href="<?php echo BASEURL.'newskategori' ?>">News Kategori</a></li>
+                                            <li><a href="<?php echo BASEURL.'newssubkategori' ?>">News Sub Kategori</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
 
                         <!-- End navigation menu -->

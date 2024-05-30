@@ -14,28 +14,28 @@
                 <div class="card-box">
                     <div class="row mb-2" >
                         <div class="col-6">
-                            <h4 class="header-title m-t-0 m-b-20">Table Product Sub Kategori</h4>
+                            <h4 class="header-title m-t-0 m-b-20">Table Kategori</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="<?php echo BASEURL.'productsubkategori/tambah' ?>" class="btn btn-info">Tambah</a>
+                            <a href="<?php echo BASEURL.'newskategori/tambah' ?>" class="btn btn-info">Tambah</a>
                         </div>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama Kategori</th>
-                                <th>Nama Sub Kategori</th>
+                                <th>Slug</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($kategori as $key => $kat): ?>
                                 <tr>
-                                    <td><?php echo $kat['kategori'] ?></td>
-                                    <td><?php echo $kat['subkategori'] ?></td>
+                                    <td><?php echo $kat['name'] ?></td>
+                                    <td><?php echo $kat['slug'] ?></td>
                                     <td>
-                                        <a href="<?php echo BASEURL.'productsubkategori/edit/'.$kat['id_productsub_category'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button class="btn btn-danger trash-confirm" data-idkategori="<?php echo $kat['id_productsub_category'] ?>"><i class="fa fa-trash"></i></button>
+                                        <a href="<?php echo BASEURL.'newskategori/edit/'.$kat['id_news_kategori'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger trash-confirm" data-idkategori="<?php echo $kat['id_news_kategori'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -83,7 +83,7 @@
                                         text: 'Yes, sure!',
                                         btnClass: 'btn-orange',
                                         action: function(){
-                                            return $.post( "<?php echo BASEURL.'productsubkategori/deletekategori' ?>", { id_delete: idprod }).done(function( data ) {
+                                            return $.post( "<?php echo BASEURL.'newskategori/deletekategori' ?>", { id_delete: idprod }).done(function( data ) {
                                                 location.reload();
                                               });
                                             $.alert('A very critical action <strong>triggered!</strong>');

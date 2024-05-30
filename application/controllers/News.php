@@ -19,8 +19,10 @@ class News extends CI_Controller {
 
 	public function tambah($value='')
 	{
+		$viewData['kategori'] = $this->GlobalModel->getData('news_kategori',null);
+
 		$this->load->view('global/header');
-		$this->load->view('news/tambah');
+		$this->load->view('news/tambah',$viewData);
 		$this->load->view('global/footer');
 	}
 
@@ -49,8 +51,6 @@ class News extends CI_Controller {
 			'thumbnail'		=>	'images/news/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
 			'url'			=>	url_title(strtolower($post['title']),'-'),
 			'id_kategori'	=>	$post['kategori'],
-			'id_sub_kategori'=>	$post['subkategori'],
-			'tag'			=>	$post['tag'],
 			'created_date'	=>	date('Y-m-d H:i:s'),
 			'id_author'		=>	$this->session->userdata('idAdmin')
 		);
@@ -64,6 +64,8 @@ class News extends CI_Controller {
 	public function edit($id='')
 	{
 		$viewData['news']	=	$this->GlobalModel->getDataRow('news',array('id_news'=>$id));
+		$viewData['kategori'] = $this->GlobalModel->getData('news_kategori',null);
+
 		$this->load->view('global/header');
 		$this->load->view('news/update',$viewData);
 		$this->load->view('global/footer');
@@ -94,7 +96,6 @@ class News extends CI_Controller {
 			'url'			=>	url_title(strtolower($post['title']),'-'),
 			'id_kategori'	=>	$post['kategori'],
 			'id_sub_kategori'=>	$post['subkategori'],
-			'tag'			=>	$post['tag'],
 			'created_date'	=>	date('Y-m-d H:i:s'),
 			'id_author'		=>	$this->session->userdata('idAdmin')
 		);

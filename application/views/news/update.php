@@ -38,22 +38,18 @@
                     <form method="POST" action="<?php echo BASEURL.'news/tambahOnAct' ?>" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Title</label>
-                            <input type="text" class="form-control" name="title" required>
+                            <input type="text" class="form-control" name="title" value="<?php echo $news['title'] ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control summernote" name="description" required></textarea> 
+                            <textarea class="form-control summernote" name="description" required><?php echo $news['description'] ?></textarea> 
                         </div>
                         <div class="form-group">
                         	<label>Kategori</label>
                         	<select class="form-control" name="kategori">
-                        		<option></option>
-                        	</select>
-                        </div>
-                        <div class="form-group">
-                        	<label>Sub Kategori</label>
-                        	<select class="form-control" name="subkategori">
-                        		<option></option>
+                                <?php foreach ($kategori as $key => $kat): ?>
+                            		<option value="<?php echo $kat['id_news_kategori'] ?>" <?php if ($kat['id_news_kategori'] == $news['id_kategori']) { echo "selected='selected'"; } ?>><?php echo $kat['name']; ?></option>
+                                <?php endforeach ?>
                         	</select>
                         </div>
                         <div class="form-group row">
@@ -61,7 +57,7 @@
                             <div class="col-10">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php echo BASEURL ?>assets/images/small/img-1.jpg" alt="image" />
+                                        <img src="<?php echo BASEURL.$news['thumbnail'] ?>" alt="image" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>
@@ -78,15 +74,11 @@
                         </div>
                         <div class="form-group">
                         	<label>Meta Desc</label>
-                        	<textarea class="form-control" name="metadesc" required></textarea>
+                        	<textarea class="form-control" name="metadesc" required><?php echo $news['meta_desc'] ?></textarea>
                         </div>
                         <div class="form-group">
                         	<label>Meta Keyword</label>
-                        	<input type="text" class="form-control" required name="keywords">
-                        </div>
-                        <div class="form-group">
-                        	<label>News Tag</label>
-                        	<input type="text" class="form-control" required name="tag">
+                        	<input type="text" class="form-control" required name="keywords" value="<?php echo $news['meta_keywords'] ?>">
                         </div>
                         <button class="btn btn-info" type="submit">Submit</button>
                     </form>

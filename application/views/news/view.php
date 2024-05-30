@@ -50,7 +50,7 @@
                             <?php foreach ($news as $key => $kat): ?>
                                 <tr>
                                     <td><?php echo $kat['title'] ?></td>
-                                    <td><img src="<?php echo BASEURL.$kat['image'] ?>" style="height: 70px;"></td>
+                                    <td><img src="<?php echo BASEURL.$kat['thumbnail'] ?>" style="height: 70px;"></td>
                                     <td>
                                         <a href="<?php echo BASEURL.'news/edit/'.$kat['id_news'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                         <button class="btn btn-danger trash-confirm" data-idnews="<?php echo $kat['id_news'] ?>"><i class="fa fa-trash"></i></button>

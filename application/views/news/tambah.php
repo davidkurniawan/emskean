@@ -47,13 +47,9 @@
                         <div class="form-group">
                         	<label>Kategori</label>
                         	<select class="form-control" name="kategori">
-                        		<option></option>
-                        	</select>
-                        </div>
-                        <div class="form-group">
-                        	<label>Sub Kategori</label>
-                        	<select class="form-control" name="subkategori">
-                        		<option></option>
+                                <?php foreach ($kategori as $key => $kat): ?>
+                        		<option value="<?php echo $kat['id_news_kategori']; ?>"><?php echo $kat['name']; ?></option>
+                                <?php endforeach ?>
                         	</select>
                         </div>
                         <div class="form-group row">
@@ -83,10 +79,6 @@
                         <div class="form-group">
                         	<label>Meta Keyword</label>
                         	<input type="text" class="form-control" required name="keywords">
-                        </div>
-                        <div class="form-group">
-                        	<label>News Tag</label>
-                        	<input type="text" class="form-control" required name="tag">
                         </div>
                         <button class="btn btn-info" type="submit">Submit</button>
                     </form>
