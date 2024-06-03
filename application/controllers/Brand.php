@@ -6,12 +6,11 @@ class Brand extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		sessionLogin();
-		
 	}
 	
 	public function index()
 	{
-		$viewData['brand'] = $this->GlobalModel->getData('brand_product',null);
+		$viewData['account'] = $this->GlobalModel->getData('administrator',array('flag_admin'=>2));
 		$this->load->view('global/header');
 		$this->load->view('brand/view',$viewData);
 		$this->load->view('global/footer');
@@ -27,42 +26,97 @@ class Brand extends CI_Controller {
 	public function tambahOnAction($value='')
 	{
 		$post = $this->input->post();
-		$insertData = array(
-			'nama_brand_product'	=>	$post['namaBrand'],
-			'url_brand_product'		=>	url_title(strtolower($post['namaBrand']))
-		);
-		$this->GlobalModel->insertData('brand_product',$insertData);
+
+		$config['upload_path'] = './images/brand/'.date('Y-m-d').'/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+
+        if (!is_dir('images/brand/'.date('Y-m-d')))
+	    {
+	        mkdir('./images/brand/'.date('Y-m-d'), 0777, true);
+	    }
+
+	    $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+
+		$dataInsert = array(
+			'nama'			=>	$post['nama'],
+			'brand_name'	=>	$post['brand'],
+			'email'			=>	$post['email'],
+			'no_telepon'	=>	$post['phone'],
+			'password'		=>	password_hash($post['password'], PASSWORD_DEFAULT),
+			'provinsi'		=>	$post['provinsi'],
+			'kota'			=>	$post['kota'],
+			'alamat_lengkap'=>	$post['alamat'],
+			'kode_pos'		=>	$post['kodePos'],
+			'image'			=>	'images/brand/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
+			// 'nama_bank'		=>	$post['namaBank'],
+			// 'no_rekening'	=>	$post['noRek'],
+			// 'an_rekening'	=>	$post['anRek'],
+			'flag_admin'	=>	2,
+			'created_date'	=>	date('Y-m-d H:i:s'),
+			'update_date'	=>	date('Y-m-d H:i:s')
+	);
+
+		$this->GlobalModel->insertData('administrator',$dataInsert);
+
 		redirect(BASEURL.'brand');
 	}
 
 	public function edit($id='')
 	{
-		$viewData['brand'] = $this->GlobalModel->getDataRow('brand_product',array('id_brand_product' => $id));
+		$viewData['acc']	=	$this->GlobalModel->getDataRow('administrator',array('id_administrator'=>$id));
 		$this->load->view('global/header');
-		$this->load->view('brand/edit',$viewData);
+		$this->load->view('brand/update',$viewData);
 		$this->load->view('global/footer');
 	}
 
-	public function editOnAction($value='')
+	public function editOnAct($value='')
 	{
 		$post = $this->input->post();
-		$insertData = array(
-			'nama_brand_product'	=>	$post['namaBrand'],
-			'url_brand_product'		=>	url_title(strtolower($post['namaBrand']))
+		
+		$config['upload_path'] = './images/brand/'.date('Y-m-d').'/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+
+        if (!is_dir('images/brand/'.date('Y-m-d')))
+	    {
+	        mkdir('./images/brand/'.date('Y-m-d'), 0755, true);
+	    }
+
+	    $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+
+		$dataInsert = array(
+			'nama'			=>	$post['nama'],
+			'brand_name'	=>	$post['brand'],
+			'email'			=>	$post['email'],
+			'no_telepon'	=>	$post['phone'],
+			'provinsi'		=>	$post['provinsi'],
+			'kota'			=>	$post['kota'],
+			'alamat_lengkap'=>	$post['alamat'],
+			'kode_pos'		=>	$post['kodePos'],
+			'image'			=>	'images/brand/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
+			// 'nama_bank'		=>	$post['namaBank'],
+			// 'no_rekening'	=>	$post['noRek'],
+			// 'an_rekening'	=>	$post['anRek'],
+			'flag_admin'	=>	2,
+			'update_date'	=>	date('Y-m-d H:i:s')
 		);
-		$whereBrand = array(
-			'id_brand_product'	=> $post['idbrand']
-		);
-		$this->GlobalModel->updateData('brand_product',$whereBrand,$insertData);
+
+		if (!empty($post['password'])) {
+			$dataInsert['password'] = password_hash($post['password'], PASSWORD_DEFAULT);
+		}
+
+		$this->GlobalModel->updateData('administrator',array('id_administrator'=>$value),$dataInsert);
 		redirect(BASEURL.'brand');
 	}
 
-	public function deleteAction($value='')
+	public function deleteItem($value='')
 	{
 		$post = $this->input->post();
-		$whereBrand = array(
-			'id_brand_product'	=> $post['id_delete']
-		);
-		$this->GlobalModel->deleteData('brand_product',$whereBrand);
+		// pre($post);
+		$this->GlobalModel->deleteData('administrator',array('id_administrator'=>$post['id_delete']));
+		echo "Data Berhasil di hapus";
 	}
 }

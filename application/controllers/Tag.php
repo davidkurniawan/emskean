@@ -41,7 +41,7 @@ class Tag extends CI_Controller {
 
 	public function edit($id='')
 	{
-		$viewData['tag'] = $this->GlobalModel->getData('tag_product',array('tag_product_id'=>$id));
+		$viewData['tag'] = $this->GlobalModel->getDataRow('tag_product',array('tag_product_id'=>$id));
 		$this->load->view('global/header');
 		$this->load->view('tag/edit',$viewData);
 		$this->load->view('global/footer');
@@ -51,13 +51,11 @@ class Tag extends CI_Controller {
 	{
 		$post = $this->input->post();
 
-		foreach ($post['tagProd'] as $key => $prod) {
-			$dataInsert = array(
-				'tag_product_name'	=>	$prod,
-				'created_date'	=>	date('Y-m-d')
-			);
-			$this->GlobalModel->insertData('tag_product',array('tag_product_id'=>$post['idTag'][$key]),$dataInsert);
-		}
+		$dataInsert = array(
+			'tag_product_name'	=>	$post['tag'],
+			'created_date'	=>	date('Y-m-d')
+		);
+		$this->GlobalModel->updateData('tag_product',array('tag_product_id'=>$value),$dataInsert);
 
 		redirect(BASEURL.'tag');
 	}

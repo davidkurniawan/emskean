@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item active">Form Advanced</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Table Account Brand </h4>
+                    <h4 class="page-title">Table Account Administrator </h4>
                 </div>
             </div>
         </div>
@@ -23,50 +23,46 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-box">
-                    <h4 class="header-title m-t-0 m-b-20" >Tambah Account Brand</h4>
-                    <form method="POST" action="<?php echo BASEURL.'brand/tambahOnAction' ?>" enctype="multipart/form-data">
-                    	<div class="form-group">
-                    		<label>Brand Name</label>
-                    		<input type="text" class="form-control" required name="brand">
-                    	</div>
+                    <h4 class="header-title m-t-0 m-b-20" >Tambah Account Administrator</h4>
+                    <form method="POST" action="<?php echo BASEURL.'administrator/editOnAct/'.$acc['id_administrator'] ?>" enctype="multipart/form-data">
                     	<div class="form-group">
                     		<label>Nama Lengkap</label>
-                    		<input type="text" class="form-control" name="nama" required>
+                    		<input type="text" class="form-control" name="nama" value="<?php echo $acc['nama'] ?>" required>
                     	</div>
                     	<div class="form-group">
                     		<label>Email</label>
-                    		<input type="email" class="form-control" required name="email">
+                    		<input type="email" class="form-control" required value="<?php echo $acc['email'] ?>" name="email">
                     	</div>
                     	<div class="form-group">
                     		<label>Password</label>
-                    		<input type="password" class="form-control" required name="password">
+                    		<input type="password" class="form-control" name="password">
                     	</div>
                     	<div class="form-group">
                     		<label>No Telephone</label>
-                    		<input type="text" class="form-control" required name="phone">
+                    		<input type="text" class="form-control" required value="<?php echo $acc['no_telepon'] ?>" name="phone">
                     	</div>
                     	<div class="form-group">
                     		<label>Provinsi</label>
-                    		<input type="text" class="form-control" required name="provinsi">
+                    		<input type="text" class="form-control" required value="<?php echo $acc['provinsi'] ?>" name="provinsi">
                     	</div>
                     	<div class="form-group">
                     		<label>Kota</label>
-                    		<input type="text" class="form-control" required name="kota">
+                    		<input type="text" class="form-control" required value="<?php echo $acc['kota'] ?>" name="kota">
                     	</div>
                     	<div class="form-group">
                     		<label>Alamat Lengkap</label>
-                    		<textarea class="form-control" name="alamat"></textarea>
+                    		<textarea class="form-control" name="alamat"><?php echo $acc['alamat_lengkap'] ?></textarea>
                     	</div>
                     	<div class="form-group">
                     		<label>Kode Pos</label>
-                    		<input type="text" class="form-control" required name="kodePos">
+                    		<input type="text" class="form-control" required value="<?php echo $acc['kode_pos'] ?>" name="kodePos">
                     	</div>
                     	<div class="form-group">
                     		<div class="form-group">
                                 <label>Image/Logo/Avatar</label>
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
-                                        <img src="<?php echo ASSETS ?>images/small/img-1.jpg" alt="image" />
+                                        <img src="<?php echo BASEURL.$acc['image'] ?>" alt="image" />
                                     </div>
                                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>

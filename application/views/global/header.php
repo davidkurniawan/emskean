@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>WMS - <?php echo $this->uri->segment(1) .'-'. date('Y-m-d') ?></title>
+        <title>WMS - <?php echo strtoupper($this->uri->segment(1)) ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -156,10 +156,23 @@
                                             <li><a href="<?php echo BASEURL.'news' ?>">News</a></li>
                                             <li><a href="<?php echo BASEURL.'newskategori' ?>">News Kategori</a></li>
                                             <li><a href="<?php echo BASEURL.'newssubkategori' ?>">News Sub Kategori</a></li>
+                                            <li><a href="<?php echo BASEURL.'tag' ?>">Tag</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
+                            <li class="has-submenu">
+                                <a href="#"><i class="mdi mdi-image-filter"></i>Account</a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                        <ul>
+                                            
+                                            <li><a href="<?php echo BASEURL.'brand' ?>">Brand</a></li>
+                                            <li><a href="<?php echo BASEURL.'administrator' ?>">Administrator</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>  
                         </ul>
 
                         <!-- End navigation menu -->

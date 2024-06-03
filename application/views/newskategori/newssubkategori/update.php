@@ -13,12 +13,12 @@
                 <div class="card-box">
                     <h4 class="header-title m-t-0 m-b-20">Update Product Kategori</h4>
 
-                    <form method="POST" action="<?php echo BASEURL.'productsubkategori/editOnAct/'.$sub['id_productsub_category'] ?>" enctype="multipart/form-data">
+                    <form method="POST" action="<?php echo BASEURL.'newssubkategori/editOnAct/'.$sub['id_news_subkategori'] ?>" enctype="multipart/form-data">
                     	<div class="form-group">
                             <label>Kategori</label>
                             <select class="form-control" name="kategori">
                                 <?php foreach ($kategori as $key => $kat): ?>
-                                    <option <?php if($kat['id_product_category'] == $sub['id_product_category']){ echo "selected='selected'";} ?> value="<?php echo $kat['id_product_category'] ?>"><?php echo $kat['name'] ?></option>
+                                    <option <?php if($kat['id_news_kategori'] == $sub['id_news_kategori']){ echo "selected='selected'";} ?> value="<?php echo $kat['id_news_kategori'] ?>"><?php echo $kat['name'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

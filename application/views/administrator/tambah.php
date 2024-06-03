@@ -15,7 +15,7 @@
                             <li class="breadcrumb-item active">Form Advanced</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Table Account Brand </h4>
+                    <h4 class="page-title">Table Account Administrator </h4>
                 </div>
             </div>
         </div>
@@ -23,12 +23,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-box">
-                    <h4 class="header-title m-t-0 m-b-20" >Tambah Account Brand</h4>
-                    <form method="POST" action="<?php echo BASEURL.'brand/tambahOnAction' ?>" enctype="multipart/form-data">
-                    	<div class="form-group">
-                    		<label>Brand Name</label>
-                    		<input type="text" class="form-control" required name="brand">
-                    	</div>
+                    <h4 class="header-title m-t-0 m-b-20" >Tambah Account Administrator</h4>
+                    <form method="POST" action="<?php echo BASEURL.'administrator/tambahOnAction' ?>" enctype="multipart/form-data">
                     	<div class="form-group">
                     		<label>Nama Lengkap</label>
                     		<input type="text" class="form-control" name="nama" required>

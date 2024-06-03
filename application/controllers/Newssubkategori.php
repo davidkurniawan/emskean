@@ -70,7 +70,7 @@ class Newssubkategori extends CI_Controller {
 			'id_news_kategori'	=>	$post['kategori'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
-			'created_date'	=>	date('Y-m-d')
+			'updated_date'	=>	date('Y-m-d')
 		);
 
 		if ($front = $this->upload->do_upload('image')) {

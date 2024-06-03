@@ -20,7 +20,7 @@
                             <li class="breadcrumb-item active">Form Advanced</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Account Brand</h4>
+                    <h4 class="page-title">Account Administrator</h4>
                 </div>
             </div>
         </div>
@@ -30,15 +30,14 @@
             <div class="col-md-12">
 
                 <div class="card-box">
-                    <h4 class="header-title m-t-0 m-b-20">Table Account Brand</h4>
+                    <h4 class="header-title m-t-0 m-b-20">Table Account Administrator</h4>
                     <div class="text-end text-right mt-2 mb-2">
-                        <a href="<?php echo BASEURL.'brand/tambah' ?>" class="btn btn-primary">Tambah</a>
+                        <a href="<?php echo BASEURL.'administrator/tambah' ?>" class="btn btn-primary">Tambah</a>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Brand</th>
                                 <th>Email</th>
                                 <th>No Telepon</th>
                                 <th>Kota</th>
@@ -48,17 +47,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($account as $key => $acc): ?>
+                            <?php foreach ($adm as $key => $acc): ?>
                                 <tr>
                                     <td><?php echo $acc['nama'] ?></td>
-                                    <td><?php echo $acc['brand_name'] ?></td>
                                     <td><?php echo $acc['email'] ?></td>
                                     <td><?php echo $acc['no_telepon'] ?></td>
                                     <td><?php echo $acc['kota'] ?></td>
                                     <td><?php echo $acc['provinsi'] ?></td>
                                     <td><?php echo $acc['flag_admin'] ?></td>
                                     <td>
-                                        <a href="<?php echo BASEURL.'brand/edit/'.$acc['id_administrator'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <a href="<?php echo BASEURL.'administrator/edit/'.$acc['id_administrator'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                         <button class="btn btn-danger trash-confirm" data-idbrand="<?php echo $acc['id_administrator'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>

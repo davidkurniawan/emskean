@@ -6,12 +6,11 @@ class Administrator extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		sessionLogin();
-		
 	}
 	
 	public function index()
 	{
-		$viewData['administrator'] = $this->GlobalModel->getData('administrator',null);
+		$viewData['adm'] = $this->GlobalModel->getData('administrator',array('flag_admin'=>1));
 		$this->load->view('global/header');
 		$this->load->view('administrator/view',$viewData);
 		$this->load->view('global/footer');
@@ -24,29 +23,48 @@ class Administrator extends CI_Controller {
 		$this->load->view('global/footer');
 	}
 
-	public function tambahOnAct($value='')
+	public function tambahOnAction($value='')
 	{
 		$post = $this->input->post();
+
+		$config['upload_path'] = './images/administrator/'.date('Y-m-d').'/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+
+        if (!is_dir('images/administrator/'.date('Y-m-d')))
+	    {
+	        mkdir('./images/administrator/'.date('Y-m-d'), 0777, true);
+	    }
+
+	    $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
 
 		$dataInsert = array(
 			'nama'			=>	$post['nama'],
 			'email'			=>	$post['email'],
+			'no_telepon'	=>	$post['phone'],
 			'password'		=>	password_hash($post['password'], PASSWORD_DEFAULT),
 			'provinsi'		=>	$post['provinsi'],
 			'kota'			=>	$post['kota'],
-			'flag_admin'	=>	$post['flag'],
-			'created_date'	=>	date('Y-m-d H:i:s')
-
+			'alamat_lengkap'=>	$post['alamat'],
+			'kode_pos'		=>	$post['kodePos'],
+			'image'			=>	'images/administrator/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
+			// 'nama_bank'		=>	$post['namaBank'],
+			// 'no_rekening'	=>	$post['noRek'],
+			// 'an_rekening'	=>	$post['anRek'],
+			'flag_admin'	=>	1,
+			'created_date'	=>	date('Y-m-d H:i:s'),
+			'update_date'	=>	date('Y-m-d H:i:s')
 	);
 
 		$this->GlobalModel->insertData('administrator',$dataInsert);
 
-		redirect(BASEURL.'administrator');
+		redirect(BASEURL.'brand');
 	}
 
 	public function edit($id='')
 	{
-		$viewData['administrator']	=	$this->GlobalModel->getData('administrator',array('administrator'=>$id));
+		$viewData['acc']	=	$this->GlobalModel->getDataRow('administrator',array('id_administrator'=>$id));
 		$this->load->view('global/header');
 		$this->load->view('administrator/update',$viewData);
 		$this->load->view('global/footer');
@@ -55,17 +73,38 @@ class Administrator extends CI_Controller {
 	public function editOnAct($value='')
 	{
 		$post = $this->input->post();
-			
+		
+		$config['upload_path'] = './images/administrator/'.date('Y-m-d').'/';
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+
+        if (!is_dir('images/administrator/'.date('Y-m-d')))
+	    {
+	        mkdir('./images/administrator/'.date('Y-m-d'), 0755, true);
+	    }
+
+	    $this->load->library('upload', $config);
+        $this->upload->do_upload('image');
+
 		$dataInsert = array(
 			'nama'			=>	$post['nama'],
 			'email'			=>	$post['email'],
-			'password'		=>	password_hash($post['password'], PASSWORD_DEFAULT),
+			'no_telepon'	=>	$post['phone'],
 			'provinsi'		=>	$post['provinsi'],
 			'kota'			=>	$post['kota'],
-			'flag_admin'	=>	$post['flag'],
-			'created_date'	=>	date('Y-m-d H:i:s')
-
+			'alamat_lengkap'=>	$post['alamat'],
+			'kode_pos'		=>	$post['kodePos'],
+			'image'			=>	'images/administrator/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
+			// 'nama_bank'		=>	$post['namaBank'],
+			// 'no_rekening'	=>	$post['noRek'],
+			// 'an_rekening'	=>	$post['anRek'],
+			'flag_admin'	=>	1,
+			'update_date'	=>	date('Y-m-d H:i:s')
 		);
+
+		if (!empty($post['password'])) {
+			$dataInsert['password'] = password_hash($post['password'], PASSWORD_DEFAULT);
+		}
 
 		$this->GlobalModel->updateData('administrator',array('id_administrator'=>$value),$dataInsert);
 		redirect(BASEURL.'administrator');

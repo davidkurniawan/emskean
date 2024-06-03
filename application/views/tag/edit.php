@@ -26,28 +26,12 @@
 
                 <div class="card-box">
                     <h4 class="header-title m-t-0 m-b-20">Edit Tag Product</h4>
-                    <form method="POST" action="<?php echo BASEURL.'tag/tambahOnAct' ?>">
-
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="item_table">
-                            <tr>
-                                <th>Tag Product</th>
-                                <th><button type="button" name="add" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i></button></th>
-                            </tr>
-                            <?php foreach ($tag as $key => $ta): ?>
-                            <tr>
-                                <td>
-                                    <input type="hidden" value="<?php echo $ta['tag_product_id'] ?>" name="idTag">
-                                    <input type="text" class="form-control" name="tagProd[]" placeholder="Tag For Product" value="<?php echo $ta['tag_product_name'] ?>" required>
-                                </td>
-                                <td><button type="button" name="remove" data-id="<?php echo $ta['tag_product_id'] ?>" class="btn btn-danger btn-sm remove"><i class="fa fa-minus"></button></td></tr>
-                            </tr>
-                            <?php endforeach ?>
-                            </table>
-                            <div align="center">
-                                <button type="submit" class="btn btn-info">Submit</button>
-                            </div>
-                        </div>
+                    <form method="POST" action="<?php echo BASEURL.'tag/editOnAct/'.$tag['tag_product_id'] ?>">
+                        <div class="form-group">
+                            <label>Tag</label>
+                            <input type="text" class="form-control" name="tag" value="<?php echo $tag['tag_product_name'] ?>" required>
+                        </div>                        
+                        <button class="btn btn-info">Submit</button>
                     </form>
                 </div>
 
