@@ -11,7 +11,7 @@ class Redeempoin extends CI_Controller {
 	
 	public function index()
 	{
-		$viewData['item'] = $this->GlobalModel->queryManual('SELECT rp.signature,rp.nomer_resi,usc.alamat,usc.kode_pos,usc.kota,usc.kecamatan,usc.provinsi,usc.kelurahan,usc.nama, usc.email, usc.phone, usc.poin as poin_user, ppn.produk_poin_title, ppn.poin as poin_produk, usc.id_user_customer, rp.id_redeem_poin, rp.status_redeem_poin FROM redeem_poin rp JOIN user_customer usc ON rp.id_user_customer=usc.id_user_customer JOIN produk_poin ppn ON rp.id_produk_poin=ppn.id_produk_poin');
+		$viewData['item'] = $this->GlobalModel->queryManual('SELECT rp.signature,rp.nomer_resi, usc.poin as poin_user, ppn.produk_poin_title, ppn.poin as poin_produk, usc.id_user_customer, rp.id_redeem_poin, rp.status_redeem_poin FROM redeem_poin rp JOIN user_customer usc ON rp.id_user_customer=usc.id_user_customer JOIN produk_poin ppn ON rp.id_produk_poin=ppn.id_produk_poin');
 		$this->load->view('global/header');
 		$this->load->view('redeem_poin/view',$viewData);
 		$this->load->view('global/footer');
@@ -19,7 +19,7 @@ class Redeempoin extends CI_Controller {
 
 	public function editredeem($value='')
 	{
-		$viewData['item'] = $this->GlobalModel->queryManualRow('SELECT rp.nomer_resi,usc.alamat,usc.kode_pos,usc.kota,usc.kecamatan,usc.provinsi,usc.kelurahan,usc.nama, usc.email, usc.phone, usc.poin as poin_user, ppn.produk_poin_title, ppn.poin as poin_produk, usc.id_user_customer, rp.id_redeem_poin, rp.status_redeem_poin FROM redeem_poin rp JOIN user_customer usc ON rp.id_user_customer=usc.id_user_customer JOIN produk_poin ppn ON rp.id_produk_poin=ppn.id_produk_poin WHERE rp.id_redeem_poin="'.$value.'" ');
+		$viewData['item'] = $this->GlobalModel->queryManualRow('SELECT rp.nomer_resi, usc.poin as poin_user, ppn.produk_poin_title, ppn.poin as poin_produk, usc.id_user_customer, rp.id_redeem_poin, rp.status_redeem_poin FROM redeem_poin rp JOIN user_customer usc ON rp.id_user_customer=usc.id_user_customer JOIN produk_poin ppn ON rp.id_produk_poin=ppn.id_produk_poin WHERE rp.id_redeem_poin="'.$value.'" ');
 		$this->load->view('global/header');
 		$this->load->view('redeem_poin/update',$viewData);
 		$this->load->view('global/footer');

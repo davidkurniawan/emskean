@@ -54,6 +54,9 @@ class Product extends CI_Controller {
 	    $this->load->library('upload', $config);
 
 		$dataInsert = array(
+			'meta_title'				=> $post['metaTitle'],
+			'meta_desc'					=> $post['metaDesc'],
+			'nama_product'				=> $post['namaProduct'],
 			'nama_product'				=> $post['namaProduct'],
 			'gender_product'			=> $post['genderPakaian'],
 			'id_product_category'		=> $post['kategoriProduk'],
@@ -124,6 +127,8 @@ class Product extends CI_Controller {
 		$dataProduct = $this->GlobalModel->getData('image_product',array('id_product'=>$post['id_product']));
 
 		$updateData = array(
+			'meta_title'				=> $post['metaTitle'],
+			'meta_desc'					=> $post['metaDesc'],
 			'nama_product'				=> $post['namaProduct'],
 			'id_product_category'		=> $post['kategoriProduk'],
 			'id_productsub_category'	=> $post['subkategoriProduk'],

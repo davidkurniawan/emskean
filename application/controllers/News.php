@@ -20,6 +20,7 @@ class News extends CI_Controller {
 	public function tambah($value='')
 	{
 		$viewData['kategori'] = $this->GlobalModel->getData('news_kategori',null);
+		$viewData['tag'] = $this->GlobalModel->getData('tag_product',null);
 
 		$this->load->view('global/header');
 		$this->load->view('news/tambah',$viewData);
@@ -29,7 +30,7 @@ class News extends CI_Controller {
 	public function tambahOnAct($value='')
 	{
 		$post = $this->input->post();
-
+		$implodeTag = implode(',', $post['tag']);
 		$config['upload_path'] = './images/news/'.date('Y-m-d').'/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
@@ -51,6 +52,7 @@ class News extends CI_Controller {
 			'thumbnail'		=>	'images/news/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
 			'url'			=>	url_title(strtolower($post['title']),'-'),
 			'id_kategori'	=>	$post['kategori'],
+			'tag'	=>	$implodeTag,
 			'created_date'	=>	date('Y-m-d H:i:s'),
 			'id_author'		=>	$this->session->userdata('idAdmin')
 		);
@@ -65,6 +67,7 @@ class News extends CI_Controller {
 	{
 		$viewData['news']	=	$this->GlobalModel->getDataRow('news',array('id_news'=>$id));
 		$viewData['kategori'] = $this->GlobalModel->getData('news_kategori',null);
+		$viewData['tag'] = $this->GlobalModel->getData('tag_product',null);
 
 		$this->load->view('global/header');
 		$this->load->view('news/update',$viewData);
@@ -74,7 +77,9 @@ class News extends CI_Controller {
 	public function editOnAct($value='')
 	{
 		$post = $this->input->post();
-			
+		
+		$implodeTag = implode(',', $post['tag']);
+
 		$config['upload_path'] = './images/news/'.date('Y-m-d').'/';
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
@@ -97,11 +102,12 @@ class News extends CI_Controller {
 			'id_kategori'	=>	$post['kategori'],
 			'id_sub_kategori'=>	$post['subkategori'],
 			'created_date'	=>	date('Y-m-d H:i:s'),
+			'tag'			=>	$implodeTag,
 			'id_author'		=>	$this->session->userdata('idAdmin')
 		);
 
-		if ($front = $this->upload->do_upload('imgFileFront')) {
-			$dataInsert['thumbnail'] = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+		if ($front = $this->upload->do_upload('image')) {
+			$dataInsert['thumbnail'] = 'images/news/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 		}
 		
 		$this->GlobalModel->updateData('news',array('id_news'=>$value),$dataInsert);

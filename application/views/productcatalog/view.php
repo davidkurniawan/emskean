@@ -20,7 +20,7 @@
                             <li class="breadcrumb-item active">Form Advanced</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Product Poin </h4>
+                    <h4 class="page-title">Product Catalog </h4>
                 </div>
             </div>
         </div>
@@ -32,36 +32,30 @@
                 <div class="card-box">
                     <div class="row mb-2" >
                         <div class="col-6">
-                            <h4 class="header-title m-t-0 m-b-20">Table Product Poin</h4>
+                            <h4 class="header-title m-t-0 m-b-20">Table Product Catalog</h4>
                         </div>
                         <div class="col-6 text-right">
-                            <a href="<?php echo BASEURL.'pemasaran/produkpoin/tambah' ?>" class="btn btn-info">Tambah</a>
+                            <a href="<?php echo BASEURL.'productkatalog/tambah' ?>" class="btn btn-info">Tambah Product Catalog</a>
                         </div>
                     </div>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Produk Title</th>
-                                <th>Image</th>
-                                <th>Poin</th>
-                                <th>Diskon/Value</th>
-                                <th>Description</th>
-                                <th>Status </th>
+                                <th>Katalog Name</th>
+                                <th>Katalog Headline</th>
+                                <th>Katalog Banner</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($produkpoin as $key => $pro): ?>
+                            <?php foreach ($product as $key => $prod): ?>
                                 <tr>
-                                    <td><?php echo $pro['produk_poin_title'] ?></td>
-                                    <td><img src="<?php echo BASEURL.$pro['image'] ?>" style="width: 100px;"></td>
-                                    <td><?php echo $pro['poin'] ?></td>
-                                    <td><?php echo $pro['diskon'] ?></td>
-                                    <td><?php echo $pro['description'] ?></td>
-                                    <td><?php echo $pro['status_poin'] ?></td>
+                                    <td><?php echo $prod['product_catalog_name'] ?></td>
+                                    <td><?php echo $prod['product_catalog_headline'] ?></td>
+                                    <td><img src="<?php echo BASEURL.$prod['product_catalog_banner'] ?>" style="height: 70px;"></td>
                                     <td>
-                                        <a href="<?php echo BASEURL.'pemasaran/produkpoin/edit/'.$pro['id_produk_poin'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button class="btn btn-danger trash-confirm" data-idpromo="<?php echo $pro['id_produk_poin'] ?>"><i class="fa fa-trash"></i></button>
+                                        <a href="<?php echo BASEURL.'productkatalog/edit/'.$prod['id_product_catalog'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger trash-confirm" data-idkatalog="<?php echo $prod['id_product_catalog'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
@@ -85,7 +79,7 @@
         $('.table').DataTable();
 
         $('.trash-confirm').on('click', function(){
-            var idprod = $(this).data('idpromo');
+            var idkatalog = $(this).data('idkatalog');
             $.confirm({
                 title: 'A secure action',
                 content: 'Its smooth to do multiple confirms at a time. <br> Click confirm or cancel for another modal',
@@ -109,7 +103,7 @@
                                         text: 'Yes, sure!',
                                         btnClass: 'btn-orange',
                                         action: function(){
-                                            return $.post( "<?php echo BASEURL.'pemasaran/produkpoin/delete' ?>", { id_delete: idprod }).done(function( data ) {
+                                            return $.post( "<?php echo BASEURL.'productkatalog/deleteItem' ?>", { id_delete: idkatalog }).done(function( data ) {
                                                 location.reload();
                                               });
                                             $.alert('A very critical action <strong>triggered!</strong>');

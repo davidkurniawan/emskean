@@ -1,15 +1,14 @@
-<link href="<?php echo PLUGINS ?>bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
-<link href="<?php echo PLUGINS ?>summernote/summernote-bs4.css" rel="stylesheet" />
-<link href="<?php echo PLUGINS ?>bootstrap-tagsinput/css/bootstrap-tagsinput.css" rel="stylesheet" />
+<link href="<?php echo PLUGINS ?>select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo PLUGINS ?>select2/js/select2.min.js" type="text/javascript"></script>
 <!-- Bootstrap fileupload css -->
 <link href="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
 <script src="<?php echo PLUGINS ?>bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
 <!--Summernote js-->
+<link href="<?php echo PLUGINS ?>summernote/summernote-bs4.css" rel="stylesheet" />
 <script src="<?php echo PLUGINS ?>summernote/summernote-bs4.min.js"></script>
 <script src="<?php echo PLUGINS ?>bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
 <!-- Bootstrap fileupload js -->
 <script src="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.js"></script>
-<!-- tag -->
 <link href="<?php echo PLUGINS ?>select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo PLUGINS ?>select2/js/select2.min.js" type="text/javascript"></script>
 
@@ -22,7 +21,6 @@
     padding: 0 7px;
 }
 </style>
-
 <div class="wrapper">
     <div class="container-fluid">
 
@@ -38,7 +36,7 @@
                             <li class="breadcrumb-item active">Form Advanced</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">News </h4>
+                    <h4 class="page-title">Product Katalog </h4>
                 </div>
             </div>
         </div>
@@ -48,63 +46,56 @@
             <div class="col-md-12">
 
                 <div class="card-box">
-                    <h4 class="header-title m-t-0 m-b-20">Update News</h4>
-                    <form method="POST" action="<?php echo BASEURL.'news/editOnAct/'.$news['id_news'] ?>" enctype="multipart/form-data">
+                    <h4 class="header-title m-t-0 m-b-20">Update Product Katalog</h4>
+                    <form method="POST" action="<?php echo BASEURL.'productkatalog/editOnAct/'.$productkatalog['id_product_catalog'] ?>" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" name="title" value="<?php echo $news['title'] ?>" required>
+                            <label>Meta Title</label>
+                            <input type="text" class="form-control" name="metaTitle" value="<?php echo $productkatalog['meta_title'] ?>" required>
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control summernote" name="description" required><?php echo $news['description'] ?></textarea> 
+                            <label>Meta Description</label>
+                            <textarea class="form-control" name="metaDesc" required><?php echo $productkatalog['meta_desc'] ?></textarea> 
                         </div>
                         <div class="form-group">
-                        	<label>Kategori</label>
-                        	<select class="form-control" name="kategori">
-                                <?php foreach ($kategori as $key => $kat): ?>
-                            		<option value="<?php echo $kat['id_news_kategori'] ?>" <?php if ($kat['id_news_kategori'] == $news['id_kategori']) { echo "selected='selected'"; } ?>><?php echo $kat['name']; ?></option>
-                                <?php endforeach ?>
-                        	</select>
+                        	<label>Katalog Name</label>
+                        	<input type="text" class="form-control" required name="katalogName" value="<?php echo $productkatalog['product_catalog_name'] ?>">
                         </div>
                         <div class="form-group">
                             <?php 
-                            $explodeItem = explode(',', $news['tag']);
+                            $explodeItem = explode(',', $productkatalog['product_catalog_item']);
                              ?>
-                            <label>Tag</label>
-                            <select class="select2 form-control select2-multiple" name="tag[]" multiple="multiple" multiple data-placeholder="Choose ...">
-                                <?php foreach ($tag as $key => $t): ?>
-                                    <option value="<?php echo $t['tag_product_id'] ?>" <?php foreach ($explodeItem as $keyexp => $exp): ?> <?php if($exp == $t['tag_product_id']) { echo 'selected="selected"';} ?> <?php endforeach ?>><?php echo $t['tag_product_name'] ?>
+                        	<label>Katalog Item</label>
+                        	<select class="select2 form-control select2-multiple" name="katalogItem[]" multiple="multiple" multiple data-placeholder="Choose ...">
+                        		<?php foreach ($product as $key => $prod): ?>
+                            		<option value="<?php echo $prod['id_product'] ?>" <?php foreach ($explodeItem as $keyexp => $exp): ?> <?php if($exp == $prod['id_product']) { echo 'selected="selected"';} ?> <?php endforeach ?>><?php echo $prod['nama_product'] ?>
                                     </option>
-                                <?php endforeach ?>
-                            </select>
+                        		<?php endforeach ?>
+                        	</select>
                         </div>
-                        <div class="form-group row">
-                        <label class="col-2 col-form-label">*Image Upload</label>
-                            <div class="col-10">
-                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                        <img src="<?php echo BASEURL.$news['thumbnail'] ?>" alt="image" />
-                                    </div>
-                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                    <div>
-                                        <button type="button" class="btn btn-custom btn-file">
-                                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                            <input type="file" class="btn-light" name="image" />
-                                        </button>
-                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                    </div>
+                        <div class="form-group">
+                        	<label>Katalog Banner</label>
+                        	<div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="<?php echo BASEURL.$productkatalog['product_catalog_banner'] ?>" alt="image" />
                                 </div>
-                                <div class="alert alert-info"><strong>Notice!</strong> Image preview only works in IE10+, FF3.6+, Chrome6.0+ and Opera11.1+. In older browsers and Safari, the filename is shown instead.</div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <button type="button" class="btn btn-custom btn-file">
+                                        <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                        <input type="file" class="btn-light" name="banner" />
+                                    </button>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label>Meta Desc</label>
-                        	<textarea class="form-control" name="metadesc" required><?php echo $news['meta_desc'] ?></textarea>
+                            <label>Katalog Headline</label>
+                            <input type="text" class="form-control" name="headline" value="<?php echo $productkatalog['product_catalog_headline'] ?>" required>
                         </div>
                         <div class="form-group">
-                        	<label>Meta Keyword</label>
-                        	<input type="text" class="form-control" required name="keywords" value="<?php echo $news['meta_keywords'] ?>">
+                            <label>Katalog Desc</label>
+                            <textarea class="form-control summernote" name="katalogDesc" required><?php echo $productkatalog['product_catalog_desc'] ?></textarea>
                         </div>
                         <button class="btn btn-info" type="submit">Submit</button>
                     </form>
@@ -122,7 +113,6 @@
 <script>
     jQuery(document).ready(function(){
         $(".select2").select2();
-
         $('.summernote').summernote({
             height: 350,                 // set editor height
             minHeight: null,             // set minimum height of editor
@@ -147,12 +137,11 @@
         function uploadImage(image) {
 
                 var data = new FormData();
-
                 data.append("image", image);
 
                 $.ajax({
 
-                    url: "<?php echo BASEURL.'news/upload_image'?>",
+                    url: "<?php echo BASEURL.'productkatalog/upload_image'?>",
 
                     cache: false,
 
@@ -190,7 +179,7 @@
 
                     type: "POST",
 
-                    url: "<?php echo BASEURL.'news/delete_image' ?>",
+                    url: "<?php echo BASEURL.'productkatalog/delete_image' ?>",
 
                     cache: false,
 

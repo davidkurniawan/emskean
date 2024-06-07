@@ -35,6 +35,14 @@
                     	<form action="<?php echo BASEURL.'product/editOnAction' ?>" enctype="multipart/form-data" method="POST">
                     		<div class="row">
                     			<div class="col-6">
+                                    <div class="form-group">
+                                        <label>Meta TItle</label>
+                                        <input type="text" class="form-control" name="metaTitle" value="<?php echo $dataProd['meta_title'] ?>" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Meta Desc</label>
+                                        <textarea class="form-control" name="metaDesc" required><?php echo $dataProd['meta_desc'] ?></textarea>
+                                    </div>
 		                    		<div class="form-group">
 		                    			<label>Nama Produk</label>
                                         <input type="hidden" value="<?php echo $dataProd['id_product'] ?>" name="id_product">

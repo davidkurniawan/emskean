@@ -97,6 +97,7 @@
                                             <li><a href="<?php echo BASEURL.'product' ?>">Product</a></li>
                                             <li><a href="<?php echo BASEURL.'productkategori' ?>">Product Kategori</a></li>
                                             <li><a href="<?php echo BASEURL.'productsubkategori' ?>">Product Sub Kategori</a></li>
+                                            <li><a href="<?php echo BASEURL.'productkatalog' ?>">Product Katalog</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -133,20 +134,26 @@
                                     <?php endif ?>
                                 </ul>
                             </li> -->
-                            <!-- <li class="has-submenu">
-                                <a href="#"><i class="icon-briefcase"></i>Produk Poin</a>
-                                <ul class="submenu megamenu">
-                                    <li>
-                                        <ul>
-                                            
-                                            <li><a href="<?php // echo BASEURL.'pemasaran/voucher' ?>">Voucher</a></li>
-                                            <li><a href="<?php echo BASEURL.'pemasaran/produkpoin' ?>">Produk Poin</a></li>
-                                            <li><a href="<?php echo BASEURL.'redeempoin' ?>">Redeem Poin</a></li>
-                                            <li><a href="<?php echo BASEURL.'claimreferral' ?>">Claim Referral</a></li>
+                            <li class="has-submenu">
+                                <a href="#"><i class="icon-briefcase"></i>Promotion</a>
+                                <ul class="submenu ">
+                                    <li class="has-submenu">
+                                        <a href="#">Voucher</a>
+                                        <ul class="submenu">
+                                            <li><a href="<?php echo BASEURL.'pemasaran/voucher' ?>">Voucher</a></li>
+                                            <li><a href="<?php echo BASEURL.'pemasaran/historyvoucher' ?>">History Klaim Voucher</a></li>
                                         </ul>
                                     </li>
+                                    <li class="has-submenu">
+                                        <a href="#">Produk Poin</a>
+                                        <ul class="submenu">
+                                            <li><a href="<?php echo BASEURL.'pemasaran/produkpoin' ?>">Produk Poin</a></li>
+                                            <li><a href="<?php echo BASEURL.'redeempoin' ?>">History/Redeem Poin</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="<?php echo BASEURL.'claimreferral' ?>">Claim Referral</a></li>
                                 </ul>
-                            </li> -->
+                            </li>
                             <li class="has-submenu">
                                 <a href="#"><i class="icon-briefcase"></i>News</a>
                                 <ul class="submenu megamenu">

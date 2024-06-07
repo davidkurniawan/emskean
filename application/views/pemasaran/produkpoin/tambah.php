@@ -1,4 +1,7 @@
 <link href="<?php echo PLUGINS ?>bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+<link href="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
+<script src="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<link href="<?php echo PLUGINS ?>summernote/summernote-bs4.css" rel="stylesheet" />
 
 <div class="wrapper">
     <div class="container-fluid">
@@ -34,7 +37,20 @@
                     	</div>
                         <div class="form-group">
                             <label>Image</label>
-                            <input type="file" class="form-control" name="image">
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
+                                    <img src="<?php echo ASSETS ?>images/small/img-1.jpg" alt="image" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <button type="button" class="btn btn-custom btn-file">
+                                        <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                        <input type="file" class="btn-light" name="image"/>
+                                    </button>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Value Discount Amount</label>
@@ -46,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" name="desc"></textarea>
+                            <textarea class="form-control summernote" name="desc"></textarea>
                         </div>
                         <div class="form-group">
                             <label>Status</label>
@@ -68,3 +84,14 @@
     </div> <!-- end container -->
 </div>
 <script src="<?php echo PLUGINS ?>bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
+<script src="<?php echo PLUGINS ?>summernote/summernote-bs4.min.js"></script>
+<script>
+    jQuery(document).ready(function(){
+        $('.summernote').summernote({
+            height: 350,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: false                 // set focus to editable area after initializing summernote
+        });
+    });
+</script>

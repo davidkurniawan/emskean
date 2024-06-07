@@ -10,16 +10,16 @@ class Voucher extends CI_Controller {
 	
 	public function index()
 	{
-		$viewData['promo'] = $this->GlobalModel->getData('promo_product',null);
+		$viewData['voucher'] = $this->GlobalModel->getData('voucher',null);
 		$this->load->view('global/header');
-		$this->load->view('pemasaran/promo/view',$viewData);
+		$this->load->view('pemasaran/voucher/view',$viewData);
 		$this->load->view('global/footer');
 	}
 
 	public function tambah($value='')
 	{
 		$this->load->view('global/header');
-		$this->load->view('pemasaran/promo/tambah');
+		$this->load->view('pemasaran/voucher/tambah');
 		$this->load->view('global/footer');
 	}
 
@@ -28,41 +28,55 @@ class Voucher extends CI_Controller {
 		$post = $this->input->post();
 
 		$insertData = array(
-			'promo_product_name'		=>	$post['namaPromo'],
-			'promo_product_discount'	=>	$post['discountAmount'],
-			'created_date'	=>	date('Y-m-d')
+			'voucher_title'		=>	$post['title'],
+			'voucher_desc'		=>	$post['desc'],
+			'voucher_sk'		=>	$post['sk'],
+			'voucher_code'		=>	$post['namaPromo'],
+			'voucher_category'	=>	$post['category'],
+			'voucher_flag'		=>	$post['flag'],
+			'voucher_value'	=>	$post['discountAmount'],
+			'created_date'	=>	date('Y-m-d H:i:s'),
+			'id_administrator'	=>	$this->session->userdata('idAdmin'),
+			'voucher_status'	=> 1
 		);
-		$this->GlobalModel->insertData('promo_product',$insertData);
+		$this->GlobalModel->insertData('voucher',$insertData);
 		redirect(BASEURL.'pemasaran/voucher');
 	}
 
 	public function edit($id='')
 	{
-		$viewData['promo'] = $this->GlobalModel->getDataRow('promo_product',array('promo_product_id'=>$id));
+		$viewData['voucher'] = $this->GlobalModel->getDataRow('voucher',array('id_voucher'=>$id));
 		// pre($viewData);
 		$this->load->view('global/header');
-		$this->load->view('pemasaran/promo/edit',$viewData);
+		$this->load->view('pemasaran/voucher/edit',$viewData);
 		$this->load->view('global/footer');
 	}
 
 	public function editOnAct($value='')
 	{
 		$post = $this->input->post();
-
 		$insertData = array(
-			'promo_product_name'		=>	$post['namaPromo'],
-			'promo_product_discount'	=>	$post['discountAmount'],
-			'created_date'				=>	date('Y-m-d')
+			'voucher_title'		=>	$post['title'],
+			'voucher_desc'		=>	$post['desc'],
+			'voucher_sk'		=>	$post['sk'],
+			'voucher_category'	=>	$post['category'],
+			'voucher_flag'		=>	$post['flag'],
+			'start_date'		=>	$post['start'],
+			'end_date'			=>	$post['end'],
+			'voucher_code'		=>	$post['namaPromo'],
+			'voucher_value'		=>	$post['discountAmount'],
+			'created_date'		=>	date('Y-m-d H:i:s'),
+			'id_administrator'	=>	$this->session->userdata('idAdmin'),
+			'voucher_status'	=> 1
 		);
-
-		$this->GlobalModel->updateData('promo_product',array('promo_product_id'=>$post['idPromo']),$insertData);
+		$this->GlobalModel->updateData('voucher',array('id_voucher'=>$value),$insertData);
 		redirect(BASEURL.'pemasaran/voucher');
 	}
 
 	public function deletepromo($value='')
 	{
 		$post = $this->input->post();
-		$this->GlobalModel->deleteData('promo_product',array('promo_product_id'=>$post['id_delete']));
+		$this->GlobalModel->deleteData('voucher',array('voucher'=>$post['id_delete']));
 		echo "data berhasil dihapus";
 	}
 }

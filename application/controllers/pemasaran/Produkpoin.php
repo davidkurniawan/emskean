@@ -36,7 +36,7 @@ class Produkpoin extends CI_Controller {
         {
             $insertData = array(
 				'produk_poin_title'	=>	$post['title'],
-				'value'	=>	$post['value'],
+				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
 				'status_poin'	=>	$post['status'],
@@ -47,7 +47,7 @@ class Produkpoin extends CI_Controller {
         	$insertData = array(
 				'produk_poin_title'	=>	$post['title'],
 				'image'	=>	'images/produkpoin/'.$this->upload->data('file_name'),
-				'value'	=>	$post['value'],
+				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
 				'status_poin'	=>	$post['status'],
@@ -80,7 +80,7 @@ class Produkpoin extends CI_Controller {
         {
            $insertData = array(
 				'produk_poin_title'	=>	$post['title'],
-				'value'	=>	$post['value'],
+				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
 				'status_poin'	=>	$post['status'],
@@ -89,7 +89,7 @@ class Produkpoin extends CI_Controller {
 			$insertData = array(
 				'produk_poin_title'	=>	$post['title'],
 				'image'	=>	'images/produkpoin/'.$this->upload->data('file_name'),
-				'value'	=>	$post['value'],
+				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
 				'status_poin'	=>	$post['status'],

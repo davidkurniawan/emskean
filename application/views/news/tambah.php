@@ -9,6 +9,20 @@
 <script src="<?php echo PLUGINS ?>bootstrap-tagsinput/js/bootstrap-tagsinput.min.js"></script>
 <!-- Bootstrap fileupload js -->
 <script src="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<!-- tag -->
+<link href="<?php echo PLUGINS ?>select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo PLUGINS ?>select2/js/select2.min.js" type="text/javascript"></script>
+
+<style type="text/css">
+    .select2-container .select2-selection--multiple .select2-selection__choice {
+    background-color: #02c0ce;
+    border: 1px solid transparent;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 0 7px;
+}
+</style>
+
 <div class="wrapper">
     <div class="container-fluid">
 
@@ -51,6 +65,14 @@
                         		<option value="<?php echo $kat['id_news_kategori']; ?>"><?php echo $kat['name']; ?></option>
                                 <?php endforeach ?>
                         	</select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tag</label>
+                            <select class="select2 form-control select2-multiple" name="tag[]" multiple="multiple" multiple data-placeholder="Choose ...">
+                                <?php foreach ($tag as $key => $t): ?>
+                                <option value="<?php echo $t['tag_product_id'] ?>"><?php echo $t['tag_product_name'] ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                         <div class="form-group row">
                         <label class="col-2 col-form-label">*Image Upload</label>
@@ -95,6 +117,8 @@
 
 <script>
     jQuery(document).ready(function(){
+        $(".select2").select2();
+
         $('.summernote').summernote({
             height: 350,                 // set editor height
             minHeight: null,             // set minimum height of editor

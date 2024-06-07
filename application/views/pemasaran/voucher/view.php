@@ -41,21 +41,41 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Nama Kategori</th>
+                                <th>Title Voucher</th>
+                                <th>Deskripsi Voucher</th>
+                                <th>Code Voucher</th>
                                 <th>Discount</th>
+                                <th>Kategory</th>
+                                <th>Flag</th>
                                 <th>Created Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($promo as $key => $pro): ?>
+                            <?php foreach ($voucher as $key => $pro): ?>
                                 <tr>
-                                    <td><?php echo $pro['promo_product_name'] ?></td>
-                                    <td><?php echo $pro['promo_product_discount'] ?></td>
+                                    <td><?php echo $pro['voucher_title'] ?></td>
+                                    <td><?php echo $pro['voucher_desc'] ?></td>
+                                    <td><?php echo $pro['voucher_code'] ?></td>
+                                    <td><?php echo $pro['voucher_value'] ?></td>
+                                    <td>
+                                        <?php if ($pro['voucher_category'] == 1) { ?>
+                                            Diskon
+                                        <?php } else { ?>
+                                            Potongan
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($pro['voucher_flag'] == 1) { ?>
+                                            Internal
+                                        <?php } else { ?>
+                                            External
+                                        <?php } ?>
+                                    </td>
                                     <td><?php echo $pro['created_date'] ?></td>
                                     <td>
-                                        <a href="<?php echo BASEURL.'pemasaran/voucher/edit/'.$pro['promo_product_id'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                        <button class="btn btn-danger trash-confirm" data-idpromo="<?php echo $pro['promo_product_id'] ?>"><i class="fa fa-trash"></i></button>
+                                        <a href="<?php echo BASEURL.'pemasaran/voucher/edit/'.$pro['id_voucher'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                        <button class="btn btn-danger trash-confirm" data-idpromo="<?php echo $pro['id_voucher'] ?>"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

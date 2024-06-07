@@ -39,6 +39,14 @@
                     	<form action="<?php echo BASEURL.'product/tambahOnAction' ?>" enctype="multipart/form-data" method="POST">
                     		<div class="row">
                     			<div class="col-6">
+                                    <div class="form-group">
+                                        <label>Meta TItle</label>
+                                        <input type="text" class="form-control" name="metaTitle" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Meta Desc</label>
+                                        <textarea class="form-control" name="metaDesc" required></textarea>
+                                    </div>
 		                    		<div class="form-group">
 		                    			<label>*Nama Product</label>
 		                    			<input type="text" class="form-control" name="namaProduct" required>
