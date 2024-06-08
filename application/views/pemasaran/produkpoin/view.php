@@ -45,7 +45,7 @@
                                 <th>Image</th>
                                 <th>Poin</th>
                                 <th>Diskon/Value</th>
-                                <th>Description</th>
+                                <th>Sent</th>
                                 <th>Status </th>
                                 <th>Action</th>
                             </tr>
@@ -57,7 +57,7 @@
                                     <td><img src="<?php echo BASEURL.$pro['image'] ?>" style="width: 100px;"></td>
                                     <td><?php echo $pro['poin'] ?></td>
                                     <td><?php echo $pro['diskon'] ?></td>
-                                    <td><?php echo $pro['description'] ?></td>
+                                    <td><?php echo $pro['sent_by'] ?></td>
                                     <td><?php echo $pro['status_poin'] ?></td>
                                     <td>
                                         <a href="<?php echo BASEURL.'pemasaran/produkpoin/edit/'.$pro['id_produk_poin'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>

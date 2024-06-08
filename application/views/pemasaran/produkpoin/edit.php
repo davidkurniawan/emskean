@@ -69,6 +69,13 @@
                             <textarea class="form-control summernote" name="desc"><?php echo $produkpoin['description'] ?></textarea>
                         </div>
                         <div class="form-group">
+                            <label>Sent By</label>
+                            <select class="form-control" name="sent">
+                                <option <?php if($produkpoin['sent_by'] == "E-mail"){echo "selected='selected'";} ?> value="E-mail">E-mail</option>
+                                <option <?php if($produkpoin['sent_by'] == "Ekspedisi"){echo "selected='selected'";} ?> value="Ekspedisi">Ekspedisi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Status</label>
                             <select class="form-control" name="status" required>
                                 <option value="discount" <?php if($produkpoin['status_poin'] == "discount"){echo "selected='selected'";} ?>>Discount</option>

@@ -39,6 +39,7 @@ class Produkpoin extends CI_Controller {
 				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
+				'sent_by'	=>	$post['sent'],
 				'status_poin'	=>	$post['status'],
 			);
 			$this->GlobalModel->insertData('produk_poin',$insertData);
@@ -50,6 +51,7 @@ class Produkpoin extends CI_Controller {
 				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
+				'sent_by'	=>	$post['sent'],
 				'status_poin'	=>	$post['status'],
 			);
 			$this->GlobalModel->insertData('produk_poin',$insertData);
@@ -83,6 +85,7 @@ class Produkpoin extends CI_Controller {
 				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
+				'sent_by'	=>	$post['sent'],
 				'status_poin'	=>	$post['status'],
 			);
         } else {
@@ -92,6 +95,7 @@ class Produkpoin extends CI_Controller {
 				'diskon'	=>	$post['value'],
 				'poin'	=>	$post['poin'],
 				'description'	=>	$post['desc'],
+				'sent_by'	=>	$post['sent'],
 				'status_poin'	=>	$post['status'],
 			);
 		}

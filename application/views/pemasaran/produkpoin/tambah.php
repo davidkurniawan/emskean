@@ -65,6 +65,13 @@
                             <textarea class="form-control summernote" name="desc"></textarea>
                         </div>
                         <div class="form-group">
+                            <label>Sent By</label>
+                            <select class="form-control" name="sent">
+                                <option value="E-mail">E-mail</option>
+                                <option value="Ekspedisi">Ekspedisi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Status</label>
                             <select class="form-control" name="status" required>
                                 <option value="discount">Discount</option>

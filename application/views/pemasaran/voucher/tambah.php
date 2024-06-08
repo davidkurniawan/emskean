@@ -46,11 +46,11 @@
                     	</div>
                         <div class="form-group">
                             <label>Start Date (Masa Berlaku)</label>
-                            <input type="text" class="form-control" name="start" required>
+                            <input type="datetime-local" class="form-control" name="start" required>
                         </div>
                         <div class="form-group">
                             <label>End Date (Masa Berlaku)</label>
-                            <input type="text" class="form-control" name="end" required>
+                            <input type="datetime-local" class="form-control" name="end" required>
                         </div>
                         <div class="form-group">
                             <label>Promo Discount Amount</label>
