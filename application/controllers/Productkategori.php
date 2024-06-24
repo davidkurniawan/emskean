@@ -35,6 +35,8 @@ class Productkategori extends CI_Controller {
         $this->upload->do_upload('image');
 
 		$insertData = array(
+			'meta_title'	=>	$post['metaTitle'],
+			'mate_desc'	=>	$post['metaDesc'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'image'	=>	$this->upload->data('file_name'),
@@ -65,6 +67,8 @@ class Productkategori extends CI_Controller {
         $this->load->library('upload', $config);
         
 		$updateData = array(
+			'meta_title'	=>	$post['metaTitle'],
+			'mate_desc'	=>	$post['metaDesc'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'created_date'	=>	date('Y-m-d')

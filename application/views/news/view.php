@@ -41,7 +41,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>title</th>
+                                <th>Title</th>
+                                <th>Featured</th>
                                 <th>Image</th>
                                 <th>Action</th>
                             </tr>
@@ -50,6 +51,12 @@
                             <?php foreach ($news as $key => $kat): ?>
                                 <tr>
                                     <td><?php echo $kat['title'] ?></td>
+                                    <td>
+                                        <?php if($kat['featured'] == 1){ echo "Featured Left";} ?>
+                                        <?php if($kat['featured'] == 2){ echo "Featured Center";} ?>
+                                        <?php if($kat['featured'] == 3){ echo "Featured Right";} ?>
+                                        <?php if($kat['featured'] == 4){ echo "Non Featured";} ?>
+                                    </td>
                                     <td><img src="<?php echo BASEURL.$kat['thumbnail'] ?>" style="height: 70px;"></td>
                                     <td>
                                         <a href="<?php echo BASEURL.'news/edit/'.$kat['id_news'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>

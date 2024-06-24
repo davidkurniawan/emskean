@@ -30,6 +30,14 @@
                     <h4 class="header-title m-t-0 m-b-20">Tambah Kategori</h4>
 
                     <form method="POST" action="<?php echo BASEURL.'productkategori/tambahact' ?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" class="form-control" name="metaTitle" >
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Desc</label>
+                            <textarea class="form-control" name="metaDesc"></textarea>
+                        </div>
                     	<div class="form-group">
                     		<label>Nama Kategori</label>
                     		<input type="text" class="form-control" name="name" required>

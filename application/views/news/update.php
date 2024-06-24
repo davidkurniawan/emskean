@@ -99,6 +99,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label>Featured</label>
+                            <select class="form-control" name="featured" required>
+                                <option <?php if($news['featured'] == 1){ echo 'selected="selected"';} ?> value="1">Featured Left</option>
+                                <option <?php if($news['featured'] == 2){ echo 'selected="selected"';} ?> value="2">Featured Center</option>
+                                <option <?php if($news['featured'] == 3){ echo 'selected="selected"';} ?> value="3">Featured Right</option>
+                                <option <?php if($news['featured'] == 4){ echo 'selected="selected"';} ?> value="4">Non Featured</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                         	<label>Meta Desc</label>
                         	<textarea class="form-control" name="metadesc" required><?php echo $news['meta_desc'] ?></textarea>
                         </div>

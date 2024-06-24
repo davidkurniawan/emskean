@@ -14,6 +14,14 @@
                     <h4 class="header-title m-t-0 m-b-20">Update Product Kategori</h4>
 
                     <form method="POST" action="<?php echo BASEURL.'productkategori/editOnAct/'.$kategori['id_product_category'] ?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" class="form-control" name="metaTitle" value="<?php echo $sub['meta_title'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Desc</label>
+                            <textarea class="form-control" name="metaDesc"><?php echo $sub['meta_desc'] ?></textarea>
+                        </div>
                     	<div class="form-group">
                     		<label>Nama Kategori</label>
                     		<input type="text" class="form-control" name="name" value="<?php echo $kategori['name'] ?>" required>

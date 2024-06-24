@@ -20,7 +20,7 @@ class Product extends CI_Controller {
 	{
 		$viewData['kategori'] = $this->GlobalModel->getData('product_category',null);
 		$viewData['varian'] = $this->GlobalModel->getData('jenis_product',null);
-		
+		$viewData['color'] = $this->GlobalModel->getData('color',null);
 		$viewData['brand'] = $this->GlobalModel->getData('brand_product',null);
 		$this->load->view('global/header');
 		$this->load->view('product/tambah',$viewData);
@@ -104,6 +104,8 @@ class Product extends CI_Controller {
 		$viewData['dataProd'] = $this->GlobalModel->getDataRow('product',array('id_product'=>$id));
 		$viewData['subkategori'] = $this->GlobalModel->getData('productsub_category',array('id_product_category'=>$viewData['dataProd']['id_product_category']));
 		$viewData['productItem'] = $this->GlobalModel->getData('product_item',array('id_product'=>$id));
+		$viewData['color'] = $this->GlobalModel->getData('color',null);
+		
 		$this->load->view('global/header');
 		$this->load->view('product/update',$viewData);
 		$this->load->view('global/footer');
@@ -220,20 +222,13 @@ class Product extends CI_Controller {
 	    $this->load->library('upload', $config);
 
 		$post = $this->input->post();
-
 		foreach ($post['sku'] as $key => $sku) {
 
-			$_FILES['imgFile']['name'] 		= $_FILES['imgProd']['name'][$key];
-            $_FILES['imgFile']['type'] 		= $_FILES['imgProd']['type'][$key];
-            $_FILES['imgFile']['tmp_name'] 	= $_FILES['imgProd']['tmp_name'][$key];
-            $_FILES['imgFile']['error'] 	= $_FILES['imgProd']['error'][$key];
-            $_FILES['imgFile']['size'] 		= $_FILES['imgProd']['size'][$key];
 
 			$insertData = array(
 				'id_product'	=> $post['id_product'],
 				'sku'	=>	$sku,
 				'size'	=>	$post['size'][$key],
-				'color'	=>	$post['color'][$key],
 				'name_color'	=>	$post['nameColor'][$key],
 				'slug_color'	=>	url_title(strtolower($post['nameColor'][$key]),'-'),
 				'qty_item'	=>	$post['qty'][$key],
@@ -241,10 +236,6 @@ class Product extends CI_Controller {
 				'created_date'	=>	date('Y-m-d')
 			);
 
-			if($this->upload->do_upload('imgFile')){
-				$imageGambar = 'images/product/'.$this->session->userdata('brandSlug').'/'.date('Y-m-d').'/'.$this->upload->data('file_name');
-				$insertData['source_image_product'] = $imageGambar;
-			}
 			if (!empty($post['product_item_id'][$key])) {
 				$this->GlobalModel->updateData('product_item',array('product_item_id'=>$post['product_item_id'][$key]),$insertData);
 			} else {

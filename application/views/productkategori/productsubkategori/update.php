@@ -2,6 +2,8 @@
 <!-- Bootstrap fileupload css -->
 <link href="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.css" rel="stylesheet" />
 <script src="<?php echo PLUGINS ?>bootstrap-fileupload/bootstrap-fileupload.js"></script>
+<link href="<?php echo PLUGINS ?>summernote/summernote-bs4.css" rel="stylesheet" />
+<script src="<?php echo PLUGINS ?>summernote/summernote-bs4.min.js"></script>
 
 <div class="wrapper">
     <div class="container-fluid">
@@ -14,6 +16,14 @@
                     <h4 class="header-title m-t-0 m-b-20">Update Product Kategori</h4>
 
                     <form method="POST" action="<?php echo BASEURL.'productsubkategori/editOnAct/'.$sub['id_productsub_category'] ?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Meta Title</label>
+                            <input type="text" class="form-control" name="metaTitle" value="<?php echo $sub['meta_title'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Meta Desc</label>
+                            <textarea class="form-control" name="metaDesc"><?php echo $sub['meta_desc'] ?></textarea>
+                        </div>
                     	<div class="form-group">
                             <label>Kategori</label>
                             <select class="form-control" name="kategori">
@@ -46,6 +56,10 @@
                                 <div class="alert alert-info"><strong>Notice!</strong> Image preview only works in IE10+, FF3.6+, Chrome6.0+ and Opera11.1+. In older browsers and Safari, the filename is shown instead.</div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Size Chart</label>
+                            <textarea class="form-control summernote" name="size"><?php echo $sub['size_chart'] ?></textarea>
+                        </div>
                     	<button class="btn btn-info" type="submit">Submit</button>
                     </form>
                 </div>
@@ -58,3 +72,10 @@
     </div> <!-- end container -->
 </div>
 <script src="<?php echo PLUGINS ?>bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 350,
+        });
+    });
+</script>

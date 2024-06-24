@@ -5,7 +5,11 @@
 <link href="<?php echo PLUGINS ?>dropzone/dropzone.css" rel="stylesheet" type="text/css" /> 
 <link href="<?php echo PLUGINS ?>bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
 <link href="<?php echo PLUGINS ?>summernote/summernote-bs4.css" rel="stylesheet" />
-
+<style type="text/css">
+    .selectpicker .bootstrap-select.btn-group .dropdown-menu{
+        height: 300px;
+    }
+</style>
 <div class="wrapper">
     <div class="container-fluid">
 
@@ -183,13 +187,13 @@
                                                     <label>*SKU</label>
                                                     <input type="text" class="form-control " name="sku[]" value="<?php echo $prodItem['sku'] ?>" required>
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group selectpicker">
                                                     <label>*NAME COLOR</label>
-                                                    <input type="text" class="form-control " name="nameColor[]" value="<?php echo $prodItem['name_color'] ?>" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>*COLOR</label>
-                                                    <input type="text" class="form-control " name="color[]" value="<?php echo $prodItem['color'] ?>" required>
+                                                    <select class="form-control" name="nameColor[]" data-live-search="true" required>
+                                                    <?php foreach ($color as $key => $col): ?>
+                                                        <option <?php if($col['name'] == $prodItem['name_color']){echo "selected='selected'";} ?> value="<?php echo $col['name'] ?>"><?php echo $col['name'] ?></option>
+                                                    <?php endforeach ?>
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>*SIZE</label>
@@ -204,20 +208,6 @@
                                                 <div class="form-group">
                                                     <label>*HARGA</label>
                                                     <input type="number" class="form-control" name="harga[]" value="<?php echo $prodItem['harga'] ?>" required>
-                                                </div>
-                                                <div class="fileupload fileupload-new" data-provides="fileupload">
-                                                    <div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">
-                                                        <img src="<?php echo BASEURL.$prodItem['source_image_product'] ?>" alt="image" />
-                                                    </div>
-                                                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                                                    <div>
-                                                        <button type="button" class="btn btn-custom btn-file">
-                                                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
-                                                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                                                            <input type="file" class="btn-light" name="imgProd[]"/>
-                                                        </button>
-                                                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +251,7 @@
                 $('#subkategoriProduk').html(data);
             });
         });
-
+        $('select').selectpicker();
     });
 </script>
 
@@ -300,13 +290,13 @@ $(document).ready(function(){
                                 '<label>*SKU</label>'+
                                 '<input type="text" class="form-control " name="sku[]" required>'+
                             '</div>'+
-                            '<div class="form-group">'+
+                            '<div class="form-group selectpicker">'+
                                 '<label>*NAME COLOR</label>'+
-                                '<input type="text" class="form-control " name="nameColor[]" required>'+
-                            '</div>'+
-                            '<div class="form-group">'+
-                                '<label>*COLOR</label>'+
-                                '<input type="text" class="form-control " name="color[]" required>'+
+                                '<select class="form-control " name="nameColor[]" >'+
+                                <?php foreach ($color as $key => $col): ?>
+                                    '<option value="<?php $col['name'] ?>" data-hex="<?php echo $col['hex'] ?>"><?php echo $col['name'] ?></option>'+
+                                <?php endforeach ?>
+                                '</select>'+
                             '</div>'+
                             '<div class="form-group">'+
                                 '<label>*SIZE</label>'+
@@ -322,20 +312,6 @@ $(document).ready(function(){
                                 '<label>*HARGA</label>'+
                                 '<input type="number" class="form-control" name="harga[]" required>'+
                             '</div>'+
-                            '<div class="fileupload fileupload-new" data-provides="fileupload">'+
-                                '<div class="fileupload-new thumbnail" style="width: 500px; height: 150px;">'+
-                                    '<img src="<?php echo ASSETS ?>images/small/img-1.jpg" alt="image" />'+
-                                '</div>'+
-                                '<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>'+
-                                '<div>'+
-                                    '<button type="button" class="btn btn-custom btn-file">'+
-                                        '<span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>'+
-                                        '<span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>'+
-                                        '<input type="file" class="btn-light" name="imgProd[]"/>'+
-                                    '</button>'+
-                                    '<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>'+
-                                '</div>'+
-                            '</div>'+
                         '</div>'+
                     '</div>'+
                 '</td>'+
@@ -343,6 +319,8 @@ $(document).ready(function(){
                     '<button type="button" name="remove" class="btn btn-danger btn-sm remove-additem"><i class="fa fa-minus"></button>'+
                 '</td>';
         $('#item_product').append(html);
+        $('select').selectpicker('refresh');
+
     });
 
     $(document).on('click', '.remove', function(){

@@ -95,6 +95,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label>Featured</label>
+                            <select class="form-control" name="featured" required>
+                                <option value="1">Featured Left</option>
+                                <option value="2">Featured Center</option>
+                                <option value="3">Featured Right</option>
+                                <option value="4">Non Featured</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                         	<label>Meta Desc</label>
                         	<textarea class="form-control" name="metadesc" required></textarea>
                         </div>

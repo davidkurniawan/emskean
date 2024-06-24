@@ -53,6 +53,7 @@ class News extends CI_Controller {
 			'url'			=>	url_title(strtolower($post['title']),'-'),
 			'id_kategori'	=>	$post['kategori'],
 			'tag'	=>	$implodeTag,
+			'featured'		=>	$post['featured'],
 			'created_date'	=>	date('Y-m-d H:i:s'),
 			'id_author'		=>	$this->session->userdata('idAdmin')
 		);
@@ -101,6 +102,7 @@ class News extends CI_Controller {
 			'url'			=>	url_title(strtolower($post['title']),'-'),
 			'id_kategori'	=>	$post['kategori'],
 			'id_sub_kategori'=>	$post['subkategori'],
+			'featured'		=>	$post['featured'],
 			'created_date'	=>	date('Y-m-d H:i:s'),
 			'tag'			=>	$implodeTag,
 			'id_author'		=>	$this->session->userdata('idAdmin')

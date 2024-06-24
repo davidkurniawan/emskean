@@ -37,7 +37,10 @@ class Productsubkategori extends CI_Controller {
 
 		$insertData = array(
 			'id_product_category'	=>	$post['kategori'],
+			'meta_title'	=>	$post['metaTitle'],
+			'mate_desc'	=>	$post['metaDesc'],
 			'name'	=>	$post['name'],
+			'size_chart'	=>	$post['size'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'image'	=>	$this->upload->data('file_name'),
 			'created_date'	=>	date('Y-m-d')
@@ -66,10 +69,12 @@ class Productsubkategori extends CI_Controller {
         $config['allowed_types']        = '*';
 
         $this->load->library('upload', $config);
-        
 		$updateData = array(
 			'id_product_category'	=>	$post['kategori'],
+			'meta_title'	=>	$post['metaTitle'],
+			'mate_desc'	=>	$post['metaDesc'],
 			'name'	=>	$post['name'],
+			'size_chart'	=>	$post['size'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'created_date'	=>	date('Y-m-d')
 		);

@@ -28,6 +28,7 @@ class Voucher extends CI_Controller {
 		$post = $this->input->post();
 
 		$insertData = array(
+			'voucher_slug'		=>	uniqid(),
 			'voucher_title'		=>	$post['title'],
 			'voucher_desc'		=>	$post['desc'],
 			'voucher_sk'		=>	$post['sk'],
