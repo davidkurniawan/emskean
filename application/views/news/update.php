@@ -55,6 +55,10 @@
                             <input type="text" class="form-control" name="title" value="<?php echo $news['title'] ?>" required>
                         </div>
                         <div class="form-group">
+                            <label>Simple Description</label>
+                            <textarea class="form-control" name="simpleDesc"><?php echo $news['simple_description'] ?></textarea>
+                        </div>
+                        <div class="form-group">
                             <label>Description</label>
                             <textarea class="form-control summernote" name="description" required><?php echo $news['description'] ?></textarea> 
                         </div>
@@ -128,6 +132,7 @@
 </div>
 
 
+
 <script>
     jQuery(document).ready(function(){
         $(".select2").select2();
@@ -137,6 +142,18 @@
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
             focus: false ,                // set focus to editable area after initializing summernote
+            hint: {
+                words: ['2row', 'orange', 'watermelon', 'lemon'],
+                match: /\b(\w{1,})$/,
+                search: function (keyword, callback) {
+                    callback($.grep(this.words, function (item) {
+                        return item.indexOf(keyword) === 0;
+                    }));
+                },
+                content: function (item) {
+                  $('.summernote').summernote("editor.pasteHTML", '<div class="row"><div class="col-lg-6 col-12">paragraph 1</div><div class="col-lg-6 col-12">paragraph 2</div></div>');
+                },
+            },
             callbacks: {
 
                 onImageUpload: function(image) {

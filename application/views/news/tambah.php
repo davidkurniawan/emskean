@@ -55,6 +55,10 @@
                             <input type="text" class="form-control" name="title" required>
                         </div>
                         <div class="form-group">
+                            <label>Simple Description</label>
+                            <textarea class="form-control" name="simpleDesc"></textarea>
+                        </div>
+                        <div class="form-group">
                             <label>Description</label>
                             <textarea class="form-control summernote" name="description" required></textarea> 
                         </div>

@@ -39,20 +39,27 @@ class productkatalog extends CI_Controller {
 	    }
 
 	    $this->load->library('upload', $config);
-        $this->upload->do_upload('banner');
 
 		$insertData = array(
 			'meta_title' 	=>	$post['metaTitle'],
 			'meta_desc'	=>	$post['metaDesc'],
 			'product_catalog_name'	=>	$post['katalogName'],
+			'slug'	=>	url_title(strtolower($post['katalogName']),'-'),
 			'product_catalog_item'	=>	$itemImplode,
-			'product_catalog_banner'	=>	'images/productkatalog/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
 			'product_catalog_headline'	=>	$post['headline'],
 			'product_catalog_desc'	=>	$post['katalogDesc'],
 			'created_date'	=>	date('Y-m-d H:i:s'),
 			'update_date'	=>	date('Y-m-d H:i:s'),
 			'id_administrator'	=>	$this->session->userdata('idAdmin'),
 		);
+
+		if ($this->upload->do_upload('banner')) {
+			$insertData['product_catalog_banner'] =	'images/productkatalog/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+		}
+
+		if ($this->upload->do_upload('thumbnail')) {
+			$insertData['product_catalog_thumbnail'] =	'images/productkatalog/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+		}
 
 		$this->GlobalModel->insertData('product_catalog',$insertData);
 		
@@ -90,6 +97,7 @@ class productkatalog extends CI_Controller {
 			'meta_title' 	=>	$post['metaTitle'],
 			'meta_desc'	=>	$post['metaDesc'],
 			'product_catalog_name'	=>	$post['katalogName'],
+			'slug'	=>	url_title(strtolower($post['katalogName']),'-'),
 			'product_catalog_item'	=>	$itemImplode,
 			'product_catalog_headline'	=>	$post['headline'],
 			'product_catalog_desc'	=>	$post['katalogDesc'],
@@ -98,8 +106,12 @@ class productkatalog extends CI_Controller {
 			'id_administrator'	=>	$this->session->userdata('idAdmin'),
 		);
 
-		if ($front = $this->upload->do_upload('banner')) {
+		if ($this->upload->do_upload('banner')) {
 			$updateData['product_catalog_banner'] = 'images/productkatalog/'.date('Y-m-d').'/'.$this->upload->data('file_name');
+		}
+
+		if ($this->upload->do_upload('thumbnail')) {
+			$updateData['product_catalog_thumbnail'] =	'images/productkatalog/'.date('Y-m-d').'/'.$this->upload->data('file_name');
 		}
 
 		$this->GlobalModel->updateData('product_catalog',array('id_product_catalog'=>$value),$updateData);

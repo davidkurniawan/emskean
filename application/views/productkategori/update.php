@@ -16,11 +16,11 @@
                     <form method="POST" action="<?php echo BASEURL.'productkategori/editOnAct/'.$kategori['id_product_category'] ?>" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Meta Title</label>
-                            <input type="text" class="form-control" name="metaTitle" value="<?php echo $sub['meta_title'] ?>">
+                            <input type="text" class="form-control" name="metaTitle" value="<?php echo $kategori['meta_title'] ?>">
                         </div>
                         <div class="form-group">
                             <label>Meta Desc</label>
-                            <textarea class="form-control" name="metaDesc"><?php echo $sub['meta_desc'] ?></textarea>
+                            <textarea class="form-control" name="metaDesc"><?php echo $kategori['meta_desc'] ?></textarea>
                         </div>
                     	<div class="form-group">
                     		<label>Nama Kategori</label>

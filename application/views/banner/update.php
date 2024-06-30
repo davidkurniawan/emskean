@@ -34,6 +34,10 @@
                     		<input type="text" class="form-control" name="title" value="<?php echo $item['title'] ?>" required>
                     	</div>
                         <div class="form-group">
+                            <label>Link Banner</label>
+                            <input type="text" class="form-control" name="link" value="<?php echo $item['link'] ?>">
+                        </div>
+                        <div class="form-group">
                             <label>Description</label>
                             <textarea class="form-control" name="description" ><?php echo $item['description'] ?></textarea> 
                         </div>
@@ -41,7 +45,9 @@
                             <label>Page</label>
                             <select class="form-control" name="page" required>
                                 <?php foreach ($category as $key => $cat): ?>
-                                    <option value="<?php echo $cat['id_banner_category'] ?>"><?php echo $cat['name'] ?></option>
+                                    <option value="<?php echo $cat['id_banner_category'] ?>" <?php if ($cat['id_banner_category'] == $item['id_banner_category']): ?>
+                                        selected='selected'
+                                    <?php endif ?>><?php echo $cat['name'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

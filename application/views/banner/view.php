@@ -43,7 +43,7 @@
                             <tr>
                                 <th>title</th>
                                 <th>Image</th>
-                                <!-- <th>Image Two</th> -->
+                                <th>Category/Page</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@
                                 <tr>
                                     <td><?php echo $kat['title'] ?></td>
                                     <td><img src="<?php echo BASEURL.$kat['image'] ?>" style="height: 70px;"></td>
-                                    <!-- <td><img src="<?php // echo BASEURL.$kat['image_two'] ?>" style="height: 70px;"></td> -->
+                                    <td><?php echo $kat['name'] ?></td>
                                     <td>
                                         <a href="<?php echo BASEURL.'banner/edit/'.$kat['id_banner'] ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                         <button class="btn btn-danger trash-confirm" data-idjenis="<?php echo $kat['id_banner'] ?>"><i class="fa fa-trash"></i></button>

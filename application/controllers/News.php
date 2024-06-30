@@ -48,6 +48,7 @@ class News extends CI_Controller {
 			'meta_desc'		=>	$post['metadesc'],
 			'meta_keywords'	=>	$post['keywords'],
 			'title'			=>	$post['title'],
+			'simple_description'	=>	$post['simpleDesc'],
 			'description'	=>	$post['description'],
 			'thumbnail'		=>	'images/news/'.date('Y-m-d').'/'.$this->upload->data('file_name'),
 			'url'			=>	url_title(strtolower($post['title']),'-'),
@@ -98,6 +99,7 @@ class News extends CI_Controller {
 			'meta_desc'		=>	$post['metadesc'],
 			'meta_keywords'	=>	$post['keywords'],
 			'title'			=>	$post['title'],
+			'simple_description'	=>	$post['simpleDesc'],
 			'description'	=>	$post['description'],
 			'url'			=>	url_title(strtolower($post['title']),'-'),
 			'id_kategori'	=>	$post['kategori'],
@@ -139,7 +141,7 @@ class News extends CI_Controller {
 		    }
 
 		    $this->load->library('upload', $config);
-
+		    $this->upload->initialize($config);
             if(!$this->upload->do_upload('image')){
                 $this->upload->display_errors();
                 return FALSE;

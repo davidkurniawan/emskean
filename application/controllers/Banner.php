@@ -11,7 +11,7 @@ class Banner extends CI_Controller {
 	
 	public function index()
 	{
-		$viewData['item'] = $this->GlobalModel->getData('banner',null);
+		$viewData['item'] = $this->GlobalModel->queryManual('SELECT * FROM banner b JOIN banner_category bc ON b.id_banner_category=bc.id_banner_category');
 		$this->load->view('global/header');
 		$this->load->view('banner/view',$viewData);
 		$this->load->view('global/footer');
@@ -41,6 +41,7 @@ class Banner extends CI_Controller {
 			'title'			=>	$post['title'],
 			'id_banner_category'			=>	$post['page'],
 			'description'	=>	$post['description'],
+			'link'	=>	$post['link'],
 			'created_date'	=>	date('Y-m-d'),
 			'image'			=>	'images/banner/'.$fileOne['file_name'],
 		);
@@ -75,6 +76,7 @@ class Banner extends CI_Controller {
 		$dataInsert = array(
 			'title'			=>	$post['title'],
 			'description'	=>	$post['description'],
+			'link'	=>	$post['link'],
 			'id_banner_category'			=>	$post['page'],
 			'image'			=>	((!empty($fileOne['file_name'])) ? 'images/banner/'.$fileOne['file_name'] : $dataBan['image']),
 		);

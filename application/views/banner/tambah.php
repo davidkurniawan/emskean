@@ -37,6 +37,10 @@
                             <textarea class="form-control" name="description" required></textarea> 
                         </div>
                         <div class="form-group">
+                            <label>Link</label>
+                            <input type="text" class="form-control" name="link">
+                        </div>
+                        <div class="form-group">
                             <label>Page</label>
                             <select class="form-control" name="page" required>
                                 <?php foreach ($category as $key => $cat): ?>

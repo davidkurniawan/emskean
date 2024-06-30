@@ -73,6 +73,23 @@
                         	</select>
                         </div>
                         <div class="form-group">
+                            <label>Katalog Thumbnail</label>
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                    <img src="<?php echo BASEURL.$productkatalog['product_catalog_thumbnail'] ?>" alt="image" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                <div>
+                                    <button type="button" class="btn btn-custom btn-file">
+                                        <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                        <input type="file" class="btn-light" name="thumbnail" />
+                                    </button>
+                                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                         	<label>Katalog Banner</label>
                         	<div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">

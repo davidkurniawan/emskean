@@ -36,10 +36,10 @@ class Productkategori extends CI_Controller {
 
 		$insertData = array(
 			'meta_title'	=>	$post['metaTitle'],
-			'mate_desc'	=>	$post['metaDesc'],
+			'meta_desc'	=>	$post['metaDesc'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
-			'image'	=>	$this->upload->data('file_name'),
+			'image'	=>	'images/category/'.$this->upload->data('file_name'),
 			'created_date'	=>	date('Y-m-d')
 		);
 
@@ -51,7 +51,6 @@ class Productkategori extends CI_Controller {
 	public function edit($value='')
 	{
 		$viewData['kategori'] = $this->GlobalModel->getDataRow('product_category',array('id_product_category'=>$value));
-
 		$this->load->view('global/header');
 		$this->load->view('productkategori/update',$viewData);
 		$this->load->view('global/footer');
@@ -68,7 +67,7 @@ class Productkategori extends CI_Controller {
         
 		$updateData = array(
 			'meta_title'	=>	$post['metaTitle'],
-			'mate_desc'	=>	$post['metaDesc'],
+			'meta_desc'	=>	$post['metaDesc'],
 			'name'	=>	$post['name'],
 			'slug'	=>	url_title($post['name'],'-'),
 			'created_date'	=>	date('Y-m-d')
